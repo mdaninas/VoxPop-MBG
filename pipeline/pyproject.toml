@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "voxpop-mbg-pipeline"
+version = "0.1.0"
+description = "NLP pipeline for analyzing TikTok comments about the MBG program."
+requires-python = ">=3.10"
+dependencies = [
+    "scikit-learn>=1.4",
+    "numpy>=1.26",
+    "openpyxl>=3.1",
+]
+
+[project.optional-dependencies]
+transformers = [
+    "sentence-transformers>=2.6",
+    "bertopic>=0.16",
+    "transformers>=4.40",
+    "torch>=2.2",
+]
+api = [
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
+]
+dev = [
+    "pytest>=8.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

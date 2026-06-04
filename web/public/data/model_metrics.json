@@ -1,0 +1,22 @@
+{
+  "sentiment_model": {
+    "method": "TF-IDF + Logistic Regression",
+    "label_source": "weak_labels",
+    "evaluation": "cross_validated_agreement_with_weak_labels",
+    "accuracy": 0.9498,
+    "macro_f1": 0.821,
+    "precision_macro": 0.8087,
+    "recall_macro": 0.8344,
+    "cv_folds": 5
+  },
+  "topic_model": {
+    "method": "Rule-based taxonomy with optional BERTopic discovery",
+    "topic_count": 13,
+    "notes": "Issue categories are mapped to stakeholder-friendly names."
+  },
+  "risk_model": {
+    "method": "Transparent rule-based risk scoring",
+    "score_range": "0-100",
+    "notes": "Risk scores indicate comments requiring manual review."
+  }
+}

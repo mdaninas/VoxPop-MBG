@@ -1,0 +1,393 @@
+{
+  "issues": [
+    {
+      "issue_id": "other",
+      "issue_name": "Other",
+      "count": 11688,
+      "share": 0.3932,
+      "dominant_sentiment": "neutral",
+      "negative_share": 0.0,
+      "positive_share": 0.0,
+      "sentiment_breakdown": {
+        "positive": 0,
+        "negative": 0,
+        "neutral": 11652,
+        "sarcastic_or_ambiguous": 36
+      },
+      "severity_score": 0,
+      "top_keywords": [
+        "belum",
+        "sama",
+        "benar",
+        "makan",
+        "program",
+        "banyak"
+      ],
+      "representative_comments": [
+        "dibayar brp lu",
+        "lh tadi dikasi tahu, kayak batagor 🗿",
+        "dibayar brp ini buzzernya",
+        "Yes pls Kapurung"
+      ]
+    },
+    {
+      "issue_id": "food_quality",
+      "issue_name": "Food Quality",
+      "count": 6145,
+      "share": 0.2067,
+      "dominant_sentiment": "neutral",
+      "negative_share": 0.1836,
+      "positive_share": 0.2067,
+      "sentiment_breakdown": {
+        "positive": 1270,
+        "negative": 1128,
+        "neutral": 3674,
+        "sarcastic_or_ambiguous": 73
+      },
+      "severity_score": 100,
+      "top_keywords": [
+        "makanan",
+        "menu",
+        "burger",
+        "ayam",
+        "enak",
+        "susu"
+      ],
+      "representative_comments": [
+        "iya pls + ak alergi telur huhu😃💔",
+        "[Sticker] burger tahu",
+        "iyalagi dikasi burger🥲",
+        "Biaya operasional dipotong 1k/porsi utk yayasan. Cmiiw"
+      ]
+    },
+    {
+      "issue_id": "student_benefit",
+      "issue_name": "Student Benefit",
+      "count": 2812,
+      "share": 0.0946,
+      "dominant_sentiment": "neutral",
+      "negative_share": 0.1127,
+      "positive_share": 0.1679,
+      "sentiment_breakdown": {
+        "positive": 472,
+        "negative": 317,
+        "neutral": 2003,
+        "sarcastic_or_ambiguous": 20
+      },
+      "severity_score": 28,
+      "top_keywords": [
+        "anak",
+        "sekolah",
+        "gizi",
+        "anakku",
+        "anak sekolah",
+        "pendidikan"
+      ],
+      "representative_comments": [
+        "Min sekolah ku belum dapat🗿",
+        "sekolah ku belum dapat akhhhh",
+        "woi sekolah gua belum dapat 🗿",
+        "sekolah ku belom ada🙃"
+      ]
+    },
+    {
+      "issue_id": "budget_transparency",
+      "issue_name": "Budget Transparency",
+      "count": 2340,
+      "share": 0.0787,
+      "dominant_sentiment": "neutral",
+      "negative_share": 0.444,
+      "positive_share": 0.0983,
+      "sentiment_breakdown": {
+        "positive": 230,
+        "negative": 1039,
+        "neutral": 1040,
+        "sarcastic_or_ambiguous": 31
+      },
+      "severity_score": 93,
+      "top_keywords": [
+        "uang",
+        "korupsi",
+        "anggaran",
+        "korup",
+        "dana",
+        "gaji"
+      ],
+      "representative_comments": [
+        "gaji karyawan woi bukan relawan",
+        "gaji karyawan dibayar pemerintah",
+        "serius tanya, setahun bayar pajak berapa om smpe segitu mencekiknya.",
+        "Spil brapa pajak yg kau bayar tol ?"
+      ]
+    },
+    {
+      "issue_id": "food_safety",
+      "issue_name": "Food Safety",
+      "count": 1644,
+      "share": 0.0553,
+      "dominant_sentiment": "neutral",
+      "negative_share": 0.382,
+      "positive_share": 0.1259,
+      "sentiment_breakdown": {
+        "positive": 207,
+        "negative": 628,
+        "neutral": 793,
+        "sarcastic_or_ambiguous": 16
+      },
+      "severity_score": 56,
+      "top_keywords": [
+        "dapur",
+        "keracunan",
+        "sppg",
+        "sakit",
+        "pengawasan",
+        "beracun"
+      ],
+      "representative_comments": [
+        "[Sticker] 7 Dapur",
+        "ada brp dapur",
+        "hyg boga dapur euy😢🥺",
+        "dapur mbg disini baru selesai di bangun woi🗿"
+      ]
+    },
+    {
+      "issue_id": "general_support",
+      "issue_name": "General Support",
+      "count": 1561,
+      "share": 0.0525,
+      "dominant_sentiment": "positive",
+      "negative_share": 0.0,
+      "positive_share": 1.0,
+      "sentiment_breakdown": {
+        "positive": 1561,
+        "negative": 0,
+        "neutral": 0,
+        "sarcastic_or_ambiguous": 0
+      },
+      "severity_score": 0,
+      "top_keywords": [
+        "bagus",
+        "suka",
+        "setuju",
+        "sehat",
+        "betul",
+        "keren"
+      ],
+      "representative_comments": [
+        "| Suka Jajan",
+        "Betul keren pol 😎",
+        "wah ikut senang, Alhamdulillah kak, semoga konsisten",
+        "mantap sekali alhamdulillah"
+      ]
+    },
+    {
+      "issue_id": "political_framing",
+      "issue_name": "Political Framing",
+      "count": 937,
+      "share": 0.0315,
+      "dominant_sentiment": "neutral",
+      "negative_share": 0.1857,
+      "positive_share": 0.1601,
+      "sentiment_breakdown": {
+        "positive": 150,
+        "negative": 174,
+        "neutral": 601,
+        "sarcastic_or_ambiguous": 12
+      },
+      "severity_score": 15,
+      "top_keywords": [
+        "prabowo",
+        "presiden",
+        "pemerintah",
+        "negara",
+        "janji",
+        "politik"
+      ],
+      "representative_comments": [
+        "[Sticker] iya iya iya presiden",
+        "rezim OMON omon mulai sinetron satu sama lain🤣😂🤣😂",
+        "Modal berapa presiden???",
+        "Ini yg untung partai mana nih ????"
+      ]
+    },
+    {
+      "issue_id": "general_rejection",
+      "issue_name": "General Rejection",
+      "count": 884,
+      "share": 0.0297,
+      "dominant_sentiment": "negative",
+      "negative_share": 1.0,
+      "positive_share": 0.0,
+      "sentiment_breakdown": {
+        "positive": 0,
+        "negative": 884,
+        "neutral": 0,
+        "sarcastic_or_ambiguous": 0
+      },
+      "severity_score": 81,
+      "top_keywords": [
+        "salah",
+        "stop",
+        "mending",
+        "program",
+        "bukan",
+        "banyak"
+      ],
+      "representative_comments": [
+        "parah ini kacau 😅",
+        "udah lah mending di stop MBG nya",
+        "mending kekne aku🗿",
+        "salah asuhan bu..."
+      ]
+    },
+    {
+      "issue_id": "implementation_quality",
+      "issue_name": "Implementation Quality",
+      "count": 815,
+      "share": 0.0274,
+      "dominant_sentiment": "neutral",
+      "negative_share": 0.1681,
+      "positive_share": 0.1264,
+      "sentiment_breakdown": {
+        "positive": 103,
+        "negative": 137,
+        "neutral": 574,
+        "sarcastic_or_ambiguous": 1
+      },
+      "severity_score": 13,
+      "top_keywords": [
+        "tutup",
+        "ganti",
+        "berjalan",
+        "sistem",
+        "ribet",
+        "pelaksanaan"
+      ],
+      "representative_comments": [
+        "klau nga ada jaminan untung ....nga mungkin akan berjalan😂",
+        "hapus mBG ganti skolah gratis",
+        "[Sticker] disini baru juga mau buka udah mau tutup lagii",
+        "[Sticker] pangkas pangkas lama lama tutup"
+      ]
+    },
+    {
+      "issue_id": "regional_access",
+      "issue_name": "Regional Access",
+      "count": 398,
+      "share": 0.0134,
+      "dominant_sentiment": "neutral",
+      "negative_share": 0.0955,
+      "positive_share": 0.0854,
+      "sentiment_breakdown": {
+        "positive": 34,
+        "negative": 38,
+        "neutral": 325,
+        "sarcastic_or_ambiguous": 1
+      },
+      "severity_score": 3,
+      "top_keywords": [
+        "daerah",
+        "desa",
+        "kampung",
+        "kabupaten",
+        "pelosok",
+        "terpencil"
+      ],
+      "representative_comments": [
+        "belum bre daerah sumatra kecamatan kecamatan belum dapat",
+        "TDK ada bmg di daerah ku jawa",
+        "di daerah ku dibayar 90perhari mulai kerja jam 7 - 4sore dibagi 2 sift",
+        "1 lagi bang ratu rumpi jos nih didesa desa 😂😂😂"
+      ]
+    },
+    {
+      "issue_id": "question_or_information",
+      "issue_name": "Question or Information",
+      "count": 379,
+      "share": 0.0128,
+      "dominant_sentiment": "neutral",
+      "negative_share": 0.0501,
+      "positive_share": 0.0686,
+      "sentiment_breakdown": {
+        "positive": 26,
+        "negative": 19,
+        "neutral": 334,
+        "sarcastic_or_ambiguous": 0
+      },
+      "severity_score": 2,
+      "top_keywords": [
+        "bagaimana",
+        "berapa",
+        "dimana",
+        "apakah",
+        "kapan",
+        "daftar"
+      ],
+      "representative_comments": [
+        "letak salahnya dimana kak?",
+        "gajinya berapa kak🙏",
+        "ini nonton dimana siiii?",
+        "dimana bu diksh sukro"
+      ]
+    },
+    {
+      "issue_id": "distribution_fairness",
+      "issue_name": "Distribution Fairness",
+      "count": 107,
+      "share": 0.0036,
+      "dominant_sentiment": "neutral",
+      "negative_share": 0.1589,
+      "positive_share": 0.1776,
+      "sentiment_breakdown": {
+        "positive": 19,
+        "negative": 17,
+        "neutral": 71,
+        "sarcastic_or_ambiguous": 0
+      },
+      "severity_score": 1,
+      "top_keywords": [
+        "kebagian",
+        "jatah",
+        "merata",
+        "adil",
+        "distribusi",
+        "semua dapat"
+      ],
+      "representative_comments": [
+        "[Sticker] belum juga kebagian😹",
+        "gw belum kebagian woi😹",
+        "Sekolah Gw belum kebagian woii !!😹",
+        "belum kebagian woylahh 🗿"
+      ]
+    },
+    {
+      "issue_id": "eligibility",
+      "issue_name": "Eligibility",
+      "count": 14,
+      "share": 0.0005,
+      "dominant_sentiment": "neutral",
+      "negative_share": 0.2143,
+      "positive_share": 0.0714,
+      "sentiment_breakdown": {
+        "positive": 1,
+        "negative": 3,
+        "neutral": 10,
+        "sarcastic_or_ambiguous": 0
+      },
+      "severity_score": 0,
+      "top_keywords": [
+        "syarat",
+        "berhak",
+        "yang berhak",
+        "kriteria",
+        "siapa yang dapat"
+      ],
+      "representative_comments": [
+        "hentikan mbg syarat proyek asal2an",
+        "lah belom juga kerja aku nya pak, sia2 ak dftar syarat ny pake npwp segala eh malah ga jdi kerja😭",
+        "Aahh kakak pake bpjs yg gratis itu ya, sebelumnya itukan ada syarat bpjs pbi di Peruntukan untuk desil2 yg tdk mampu kak, dan penonaktifan itu terjadi krna ada update data dari dinsos, mungkin saja status kakaknya di dinsos bukan lagi desi…",
+        "ya sebenernya kalo nyari lapangan pekerjaan gampang,yang gak masuk akal syarat nya 👍"
+      ]
+    }
+  ]
+}

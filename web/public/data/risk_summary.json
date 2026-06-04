@@ -1,0 +1,50 @@
+{
+  "distribution": [
+    {
+      "level": "low",
+      "count": 28361,
+      "share": 0.9541
+    },
+    {
+      "level": "medium",
+      "count": 1348,
+      "share": 0.0454
+    },
+    {
+      "level": "high",
+      "count": 15,
+      "share": 0.0005
+    },
+    {
+      "level": "needs_verification",
+      "count": 0,
+      "share": 0.0
+    }
+  ],
+  "top_risk_narratives": [
+    {
+      "code": "food_safety",
+      "count": 975,
+      "average_risk_score": 38
+    },
+    {
+      "code": "rumor",
+      "count": 263,
+      "average_risk_score": 32
+    },
+    {
+      "code": "corruption",
+      "count": 114,
+      "average_risk_score": 40
+    },
+    {
+      "code": "universal",
+      "count": 11,
+      "average_risk_score": 31
+    }
+  ],
+  "total_flagged": 1363,
+  "high_risk_count": 15,
+  "needs_verification_count": 0,
+  "average_flagged_risk_score": 37
+}

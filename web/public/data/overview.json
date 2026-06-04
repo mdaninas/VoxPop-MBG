@@ -1,0 +1,16 @@
+{
+  "project_name": "VoxPop MBG",
+  "dataset_source": "https://www.kaggle.com/datasets/sinryurifal/dataset-komentar-tiktok-mbg-makan-bergizi-gratis",
+  "generated_at": "2026-06-03T23:25:27Z",
+  "raw_rows": 33897,
+  "usable_comments": 29724,
+  "removed_empty": 2239,
+  "removed_duplicates": 1934,
+  "language": "id",
+  "has_timestamp": true,
+  "has_engagement": true,
+  "date_range": {
+    "start": "2025-09-25",
+    "end": "2026-05-26"
+  }
+}

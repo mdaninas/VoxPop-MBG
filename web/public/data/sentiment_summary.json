@@ -1,0 +1,317 @@
+{
+  "distribution": [
+    {
+      "label": "positive",
+      "count": 4073,
+      "share": 0.137
+    },
+    {
+      "label": "negative",
+      "count": 4384,
+      "share": 0.1475
+    },
+    {
+      "label": "neutral",
+      "count": 21077,
+      "share": 0.7091
+    },
+    {
+      "label": "sarcastic_or_ambiguous",
+      "count": 190,
+      "share": 0.0064
+    }
+  ],
+  "average_confidence": 0.9077,
+  "method": "tfidf_logistic_regression_with_weak_labels",
+  "notes": "Labels are produced from lexicon-based weak labeling. Metrics describe agreement with those weak labels, not human-reviewed truth.",
+  "timeline": [
+    {
+      "date": "2025-09-22",
+      "total": 17018,
+      "positive": 2484,
+      "negative": 2487,
+      "neutral": 11925,
+      "sarcastic_or_ambiguous": 122
+    },
+    {
+      "date": "2025-09-29",
+      "total": 1772,
+      "positive": 223,
+      "negative": 274,
+      "neutral": 1263,
+      "sarcastic_or_ambiguous": 12
+    },
+    {
+      "date": "2025-10-06",
+      "total": 202,
+      "positive": 32,
+      "negative": 20,
+      "neutral": 150,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2025-10-13",
+      "total": 133,
+      "positive": 22,
+      "negative": 15,
+      "neutral": 94,
+      "sarcastic_or_ambiguous": 2
+    },
+    {
+      "date": "2025-10-20",
+      "total": 874,
+      "positive": 173,
+      "negative": 83,
+      "neutral": 612,
+      "sarcastic_or_ambiguous": 6
+    },
+    {
+      "date": "2025-10-27",
+      "total": 126,
+      "positive": 28,
+      "negative": 6,
+      "neutral": 92,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2025-11-03",
+      "total": 128,
+      "positive": 17,
+      "negative": 12,
+      "neutral": 98,
+      "sarcastic_or_ambiguous": 1
+    },
+    {
+      "date": "2025-11-10",
+      "total": 135,
+      "positive": 18,
+      "negative": 22,
+      "neutral": 95,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2025-11-17",
+      "total": 331,
+      "positive": 53,
+      "negative": 33,
+      "neutral": 243,
+      "sarcastic_or_ambiguous": 2
+    },
+    {
+      "date": "2025-11-24",
+      "total": 26,
+      "positive": 9,
+      "negative": 0,
+      "neutral": 17,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2025-12-01",
+      "total": 9,
+      "positive": 1,
+      "negative": 0,
+      "neutral": 8,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2025-12-08",
+      "total": 5,
+      "positive": 1,
+      "negative": 0,
+      "neutral": 4,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2025-12-15",
+      "total": 11,
+      "positive": 1,
+      "negative": 2,
+      "neutral": 8,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2025-12-22",
+      "total": 10,
+      "positive": 1,
+      "negative": 1,
+      "neutral": 8,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2025-12-29",
+      "total": 8,
+      "positive": 0,
+      "negative": 0,
+      "neutral": 8,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2026-01-05",
+      "total": 8,
+      "positive": 1,
+      "negative": 0,
+      "neutral": 7,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2026-01-12",
+      "total": 2,
+      "positive": 0,
+      "negative": 0,
+      "neutral": 2,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2026-01-19",
+      "total": 8,
+      "positive": 0,
+      "negative": 1,
+      "neutral": 7,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2026-01-26",
+      "total": 11,
+      "positive": 3,
+      "negative": 1,
+      "neutral": 7,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2026-02-02",
+      "total": 7,
+      "positive": 2,
+      "negative": 0,
+      "neutral": 5,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2026-02-09",
+      "total": 43,
+      "positive": 4,
+      "negative": 3,
+      "neutral": 36,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2026-02-16",
+      "total": 69,
+      "positive": 15,
+      "negative": 9,
+      "neutral": 45,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2026-02-23",
+      "total": 223,
+      "positive": 32,
+      "negative": 23,
+      "neutral": 168,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2026-03-02",
+      "total": 112,
+      "positive": 20,
+      "negative": 13,
+      "neutral": 79,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2026-03-09",
+      "total": 102,
+      "positive": 17,
+      "negative": 14,
+      "neutral": 70,
+      "sarcastic_or_ambiguous": 1
+    },
+    {
+      "date": "2026-03-16",
+      "total": 38,
+      "positive": 4,
+      "negative": 10,
+      "neutral": 24,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2026-03-23",
+      "total": 1246,
+      "positive": 76,
+      "negative": 98,
+      "neutral": 1066,
+      "sarcastic_or_ambiguous": 6
+    },
+    {
+      "date": "2026-03-30",
+      "total": 85,
+      "positive": 11,
+      "negative": 7,
+      "neutral": 67,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2026-04-06",
+      "total": 95,
+      "positive": 9,
+      "negative": 8,
+      "neutral": 78,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2026-04-13",
+      "total": 109,
+      "positive": 10,
+      "negative": 12,
+      "neutral": 87,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2026-04-20",
+      "total": 77,
+      "positive": 6,
+      "negative": 8,
+      "neutral": 63,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2026-04-27",
+      "total": 123,
+      "positive": 13,
+      "negative": 14,
+      "neutral": 96,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2026-05-04",
+      "total": 105,
+      "positive": 11,
+      "negative": 13,
+      "neutral": 80,
+      "sarcastic_or_ambiguous": 1
+    },
+    {
+      "date": "2026-05-11",
+      "total": 86,
+      "positive": 10,
+      "negative": 7,
+      "neutral": 69,
+      "sarcastic_or_ambiguous": 0
+    },
+    {
+      "date": "2026-05-18",
+      "total": 5666,
+      "positive": 718,
+      "negative": 1132,
+      "neutral": 3782,
+      "sarcastic_or_ambiguous": 34
+    },
+    {
+      "date": "2026-05-25",
+      "total": 721,
+      "positive": 48,
+      "negative": 56,
+      "neutral": 614,
+      "sarcastic_or_ambiguous": 3
+    }
+  ]
+}

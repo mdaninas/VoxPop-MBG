@@ -1,0 +1,120 @@
+{
+  "executive_summary": {
+    "en": "Public discussion around MBG is concentrated on Food Quality, Budget Transparency, Food Safety. Negative sentiment is most associated with Budget Transparency, Food Safety.",
+    "id": "Diskusi publik tentang MBG terkonsentrasi pada Kualitas Makanan, Transparansi Anggaran, Keamanan Pangan. Sentimen negatif paling terkait dengan Transparansi Anggaran, Keamanan Pangan."
+  },
+  "recommended_actions": [
+    {
+      "priority": "High",
+      "title": {
+        "en": "Clarify food quality controls",
+        "id": "Perjelas kontrol kualitas makanan"
+      },
+      "description": {
+        "en": "Publish preparation standards, portion guidelines, and reporting channels so quality concerns can be raised and addressed.",
+        "id": "Publikasikan standar penyajian, panduan porsi, dan kanal pelaporan agar keluhan kualitas dapat disampaikan dan ditindaklanjuti."
+      },
+      "linked_issues": [
+        "food_quality",
+        "food_safety"
+      ],
+      "evidence": {
+        "en": "Food Quality appears in 21% of usable comments with 18% negative sentiment.",
+        "id": "Kualitas Makanan muncul di 21% komentar dengan sentimen negatif 18%."
+      }
+    },
+    {
+      "priority": "High",
+      "title": {
+        "en": "Improve budget communication",
+        "id": "Tingkatkan komunikasi anggaran"
+      },
+      "description": {
+        "en": "Provide simple explanations of budget allocation and oversight mechanisms to reduce uncertainty around program funding.",
+        "id": "Berikan penjelasan sederhana tentang alokasi anggaran dan mekanisme pengawasan untuk mengurangi keraguan soal pendanaan program."
+      },
+      "linked_issues": [
+        "budget_transparency"
+      ],
+      "evidence": {
+        "en": "Budget Transparency appears in 8% of usable comments with 44% negative sentiment.",
+        "id": "Transparansi Anggaran muncul di 8% komentar dengan sentimen negatif 44%."
+      }
+    },
+    {
+      "priority": "Medium",
+      "title": {
+        "en": "Communicate food safety supervision",
+        "id": "Komunikasikan pengawasan keamanan pangan"
+      },
+      "description": {
+        "en": "Explain hygiene supervision, kitchen oversight, and how safety incidents are handled and reported.",
+        "id": "Jelaskan pengawasan higiene, kontrol dapur, dan cara penanganan serta pelaporan insiden keamanan pangan."
+      },
+      "linked_issues": [
+        "food_safety",
+        "food_quality"
+      ],
+      "evidence": {
+        "en": "Food Safety appears in 6% of usable comments with 38% negative sentiment.",
+        "id": "Keamanan Pangan muncul di 6% komentar dengan sentimen negatif 38%."
+      }
+    },
+    {
+      "priority": "Medium",
+      "title": {
+        "en": "Separate program facts from framing",
+        "id": "Pisahkan fakta program dari framing"
+      },
+      "description": {
+        "en": "Lead with verifiable program facts and outcomes to reduce the space for politicized interpretation.",
+        "id": "Utamakan fakta dan hasil program yang dapat diverifikasi untuk mengurangi ruang interpretasi politis."
+      },
+      "linked_issues": [
+        "political_framing"
+      ],
+      "evidence": {
+        "en": "Political Framing appears in 3% of usable comments with 19% negative sentiment.",
+        "id": "Framing Politik muncul di 3% komentar dengan sentimen negatif 19%."
+      }
+    },
+    {
+      "priority": "Low",
+      "title": {
+        "en": "Resolve implementation friction",
+        "id": "Selesaikan hambatan pelaksanaan"
+      },
+      "description": {
+        "en": "Address logistics issues such as delays and process complexity, and report on improvements.",
+        "id": "Tangani masalah logistik seperti keterlambatan dan kerumitan proses, lalu laporkan perbaikannya."
+      },
+      "linked_issues": [
+        "implementation_quality"
+      ],
+      "evidence": {
+        "en": "Implementation Quality appears in 3% of usable comments with 17% negative sentiment.",
+        "id": "Kualitas Pelaksanaan muncul di 3% komentar dengan sentimen negatif 17%."
+      }
+    }
+  ],
+  "watchlist": [
+    "food_safety",
+    "rumor",
+    "corruption",
+    "universal"
+  ],
+  "limitations": [
+    {
+      "en": "Results are based on the available Kaggle dataset and may not represent all TikTok users or the wider public.",
+      "id": "Hasil didasarkan pada dataset Kaggle yang tersedia dan mungkin tidak mewakili seluruh pengguna TikTok atau masyarakat luas."
+    },
+    {
+      "en": "Sentiment and issue labels depend on weak labeling and a rule-based taxonomy rather than human-reviewed annotations.",
+      "id": "Label sentimen dan isu bergantung pada weak labeling dan taksonomi berbasis aturan, bukan anotasi yang ditinjau manusia."
+    },
+    {
+      "en": "Risk scoring is an indicator for manual review, not a truth judgment.",
+      "id": "Skor risiko adalah indikator untuk peninjauan manual, bukan penilaian benar atau salah."
+    }
+  ]
+}
