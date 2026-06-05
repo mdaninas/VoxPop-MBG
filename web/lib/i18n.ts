@@ -28,8 +28,6 @@ const en = {
     sentiment: { label: "Sentiment", description: "Sentiment analysis" },
     issues: { label: "Issues", description: "Public concerns" },
     risk: { label: "Risk Signals", description: "Comments to review" },
-    recommendations: { label: "Recommendations", description: "Suggested actions" },
-    about: { label: "About", description: "Method and ethics" },
   },
   common: {
     exploreDashboard: "Explore the dashboard",
@@ -93,7 +91,7 @@ const en = {
       {
         title: "Recommendation Summary",
         description:
-          "Turns aggregated analysis into concise, stakeholder-facing actions and a watchlist.",
+          "Distills aggregated analysis into a concise executive summary on the dashboard.",
       },
     ],
     ctaTitle: "See the analysis in action",
@@ -188,23 +186,10 @@ const en = {
     noSample: "No sample comments available",
     avg: "avg",
   },
-  recommendations: {
-    eyebrow: "Recommendations",
-    title: "From analysis to action",
-    description:
-      "Stakeholder-facing actions derived from aggregated metrics. Generated with deterministic templates, not external claims.",
-    actionsTitle: "Recommended actions",
-    actionsSub: "Prioritized by issue severity, with the supporting metric for each.",
-    priority: "priority",
-  },
   responsibleNotice:
     "Risk signals are indicators for manual review. They do not determine whether a comment is true or false. Scores combine transparent lexical cues and should be read as a prompt to verify, not a verdict.",
   cards: {
     executiveSummary: "Executive summary",
-    watchlist: "Watchlist",
-    watchlistSub: "Narratives to monitor and verify manually.",
-    watchlistEmpty: "No high-risk narratives identified.",
-    limitations: "Limitations",
   },
   table: {
     comment: "Comment",
@@ -249,70 +234,6 @@ const en = {
     explanationLow: "No notable rumor or claim patterns were detected.",
     explanationFlagged: "Flagged for manual review because the comment contains {cues}.",
   },
-  about: {
-    eyebrow: "About",
-    title: "Data, method, and ethics",
-    description:
-      "How VoxPop MBG is built, what it can and cannot claim, and how it handles privacy.",
-    datasetTitle: "Dataset",
-    datasetIntro:
-      "This project uses the Kaggle dataset “{title}” by {author}, a collection of public TikTok comments about Indonesia's Makan Bergizi Gratis program.",
-    datasetRaw:
-      "Raw dataset files are not included in this repository. Place downloaded files in data/raw/ before running the pipeline.",
-    datasetBuild: "The current build analyzed {count} usable comments{range}.",
-    pipelineTitle: "Pipeline overview",
-    pipelineStages: [
-      "Load raw data and detect the schema",
-      "Extract comment text and remove empty or duplicate comments",
-      "Mask URLs, mentions, emails, and phone-like sequences",
-      "Clean and normalize informal Indonesian text",
-      "Assign sentiment labels and confidence scores",
-      "Map comments to issue categories",
-      "Score risk signals and group narratives",
-      "Generate recommendations and export JSON",
-    ],
-    methodTitle: "Model methodology",
-    methodSentimentTitle: "Sentiment",
-    methodSentiment:
-      "Lexicon-based weak labels train a TF-IDF + Logistic Regression classifier; the predicted probability is the confidence score.",
-    methodIssuesTitle: "Issues",
-    methodIssues:
-      "A curated keyword taxonomy maps comments to stakeholder-friendly categories. Embedding-based discovery is an optional extension.",
-    methodRiskTitle: "Risk",
-    methodRisk:
-      "An additive 0-100 score from explicit lexical cues, clamped and bucketed into low, medium, high, and needs-verification.",
-    riskTitle: "Risk scoring",
-    riskSub:
-      "Scores combine the cues below and are clamped to 0–100. Thresholds: 0–29 low, 30–59 medium, 60–79 high, 80–100 needs verification.",
-    riskFeature: "Feature",
-    riskExample: "Example cues",
-    riskWeight: "Weight",
-    riskFeatures: [
-      { feature: "Food safety claim", example: "racun, keracunan, beracun" },
-      { feature: "Rumor cue", example: "katanya, kabarnya, konon" },
-      { feature: "Universal claim", example: "semua, pasti, selalu" },
-      { feature: "Accusation cue", example: "korupsi, settingan, dibayar" },
-      { feature: "Urgency cue", example: "viral, sebarkan, share" },
-      { feature: "Lacks a cited source", example: "claim without a source word" },
-      { feature: "Claim-style question", example: "apakah benar, beneran" },
-      { feature: "Supportive, non-claim", example: "semoga, bagus, membantu" },
-    ],
-    limitationsTitle: "Limitations",
-    limitations: [
-      "The dataset may not represent all TikTok users or the broader public.",
-      "Sentiment uses weak labels and a TF-IDF model, not human-reviewed annotations, so reported metrics describe agreement with weak labels.",
-      "Issue categories come from a curated keyword taxonomy and can miss nuance or sarcasm.",
-      "Risk scoring is a transparent indicator for manual review and does not determine truthfulness.",
-    ],
-    ethicsTitle: "Ethical considerations",
-    ethics: [
-      "Usernames, nicknames, avatars, and other identifiers are removed before any data is exported.",
-      "Comment excerpts are sanitized and truncated; URLs, mentions, emails, and phone numbers are masked.",
-      "Risk language is deliberately careful: signals indicate comments to review, not verdicts.",
-      "The project avoids political endorsement and presents directional insights, not conclusions.",
-    ],
-    techTitle: "Tech stack",
-  },
   dataMissing: {
     title: "Analysis data not found",
     body: "The dashboard reads JSON files from web/public/data. Generate them by running the pipeline, or create placeholder data:",
@@ -328,8 +249,6 @@ const id: Dictionary = {
     sentiment: { label: "Sentimen", description: "Analisis sentimen" },
     issues: { label: "Isu", description: "Keresahan publik" },
     risk: { label: "Sinyal Risiko", description: "Komentar untuk ditinjau" },
-    recommendations: { label: "Rekomendasi", description: "Saran tindakan" },
-    about: { label: "Tentang", description: "Metode dan etika" },
   },
   common: {
     exploreDashboard: "Jelajahi dasbor",
@@ -396,7 +315,7 @@ const id: Dictionary = {
       {
         title: "Ringkasan Rekomendasi",
         description:
-          "Mengubah hasil analisis agregat menjadi tindakan ringkas untuk pemangku kepentingan dan daftar pantau.",
+          "Menyuling hasil analisis agregat menjadi ringkasan eksekutif ringkas di dasbor.",
       },
     ],
     ctaTitle: "Lihat analisisnya langsung",
@@ -491,23 +410,10 @@ const id: Dictionary = {
     noSample: "Tidak ada sampel komentar tersedia",
     avg: "rata-rata",
   },
-  recommendations: {
-    eyebrow: "Rekomendasi",
-    title: "Dari analisis ke tindakan",
-    description:
-      "Tindakan untuk pemangku kepentingan yang diturunkan dari metrik agregat. Dihasilkan dengan templat deterministik, bukan klaim eksternal.",
-    actionsTitle: "Tindakan yang direkomendasikan",
-    actionsSub: "Diprioritaskan berdasarkan severity isu, dengan metrik pendukung untuk tiap tindakan.",
-    priority: "prioritas",
-  },
   responsibleNotice:
     "Sinyal risiko adalah indikator untuk peninjauan manual. Sinyal ini tidak menentukan benar atau salahnya sebuah komentar. Skor menggabungkan indikasi leksikal yang transparan dan harus dibaca sebagai ajakan memverifikasi, bukan vonis.",
   cards: {
     executiveSummary: "Ringkasan eksekutif",
-    watchlist: "Daftar pantau",
-    watchlistSub: "Narasi untuk dipantau dan diverifikasi secara manual.",
-    watchlistEmpty: "Tidak ada narasi berisiko tinggi yang teridentifikasi.",
-    limitations: "Batasan",
   },
   table: {
     comment: "Komentar",
@@ -551,70 +457,6 @@ const id: Dictionary = {
     risk: "Risiko",
     explanationLow: "Tidak terdeteksi pola rumor atau klaim yang menonjol.",
     explanationFlagged: "Ditandai untuk peninjauan manual karena komentar memuat {cues}.",
-  },
-  about: {
-    eyebrow: "Tentang",
-    title: "Data, metode, dan etika",
-    description:
-      "Bagaimana VoxPop MBG dibangun, apa yang bisa dan tidak bisa diklaim, serta cara menangani privasi.",
-    datasetTitle: "Dataset",
-    datasetIntro:
-      "Proyek ini memakai dataset Kaggle “{title}” oleh {author}, kumpulan komentar publik TikTok tentang program Makan Bergizi Gratis Indonesia.",
-    datasetRaw:
-      "Berkas dataset mentah tidak disertakan dalam repositori ini. Letakkan berkas yang diunduh di data/raw/ sebelum menjalankan pipeline.",
-    datasetBuild: "Build saat ini menganalisis {count} komentar layak pakai{range}.",
-    pipelineTitle: "Ringkasan pipeline",
-    pipelineStages: [
-      "Memuat data mentah dan mendeteksi skema",
-      "Mengekstrak teks komentar dan membuang komentar kosong atau duplikat",
-      "Menyamarkan URL, mention, email, dan deret mirip nomor telepon",
-      "Membersihkan dan menormalkan teks Indonesia informal",
-      "Memberi label sentimen dan skor keyakinan",
-      "Memetakan komentar ke kategori isu",
-      "Menilai sinyal risiko dan mengelompokkan narasi",
-      "Menghasilkan rekomendasi dan mengekspor JSON",
-    ],
-    methodTitle: "Metodologi model",
-    methodSentimentTitle: "Sentimen",
-    methodSentiment:
-      "Weak label berbasis leksikon melatih pengklasifikasi TF-IDF + Logistic Regression; probabilitas prediksi menjadi skor keyakinan.",
-    methodIssuesTitle: "Isu",
-    methodIssues:
-      "Taksonomi kata kunci terkurasi memetakan komentar ke kategori yang ramah pemangku kepentingan. Penemuan berbasis embedding adalah ekstensi opsional.",
-    methodRiskTitle: "Risiko",
-    methodRisk:
-      "Skor aditif 0-100 dari indikasi leksikal eksplisit, dibatasi dan dikelompokkan menjadi rendah, sedang, tinggi, dan perlu verifikasi.",
-    riskTitle: "Penilaian risiko",
-    riskSub:
-      "Skor menggabungkan indikasi di bawah ini dan dibatasi 0–100. Ambang: 0–29 rendah, 30–59 sedang, 60–79 tinggi, 80–100 perlu verifikasi.",
-    riskFeature: "Fitur",
-    riskExample: "Contoh indikasi",
-    riskWeight: "Bobot",
-    riskFeatures: [
-      { feature: "Klaim keamanan pangan", example: "racun, keracunan, beracun" },
-      { feature: "Indikasi rumor", example: "katanya, kabarnya, konon" },
-      { feature: "Klaim general", example: "semua, pasti, selalu" },
-      { feature: "Indikasi tuduhan", example: "korupsi, settingan, dibayar" },
-      { feature: "Ajakan menyebarkan", example: "viral, sebarkan, share" },
-      { feature: "Tanpa sumber rujukan", example: "klaim tanpa kata sumber" },
-      { feature: "Pertanyaan bernada klaim", example: "apakah benar, beneran" },
-      { feature: "Mendukung, bukan klaim", example: "semoga, bagus, membantu" },
-    ],
-    limitationsTitle: "Batasan",
-    limitations: [
-      "Dataset mungkin tidak mewakili seluruh pengguna TikTok atau masyarakat luas.",
-      "Sentimen memakai weak label dan model TF-IDF, bukan anotasi yang ditinjau manusia, sehingga metrik menggambarkan kesepakatan dengan weak label.",
-      "Kategori isu berasal dari taksonomi kata kunci terkurasi dan bisa melewatkan nuansa atau sarkasme.",
-      "Penilaian risiko adalah indikator transparan untuk peninjauan manual dan tidak menentukan kebenaran.",
-    ],
-    ethicsTitle: "Pertimbangan etis",
-    ethics: [
-      "Nama pengguna, nickname, avatar, dan pengenal lain dihapus sebelum data diekspor.",
-      "Kutipan komentar disanitasi dan dipotong; URL, mention, email, dan nomor telepon disamarkan.",
-      "Bahasa risiko sengaja dibuat hati-hati: sinyal menandai komentar untuk ditinjau, bukan vonis.",
-      "Proyek menghindari dukungan politik dan menyajikan wawasan terarah, bukan kesimpulan.",
-    ],
-    techTitle: "Tumpukan teknologi",
   },
   dataMissing: {
     title: "Data analisis tidak ditemukan",
@@ -665,11 +507,6 @@ const RISK_LABEL_I18N: Record<Locale, Record<RiskLevel, string>> = {
     high: "Risiko Tinggi",
     needs_verification: "Perlu Verifikasi",
   },
-};
-
-const PRIORITY_I18N: Record<Locale, Record<string, string>> = {
-  en: { High: "High", Medium: "Medium", Low: "Low" },
-  id: { High: "Tinggi", Medium: "Sedang", Low: "Rendah" },
 };
 
 const NARRATIVE_I18N: Record<Locale, Record<string, string>> = {
@@ -730,10 +567,6 @@ export function sentimentLabel(label: SentimentLabel, locale: Locale): string {
 
 export function riskLabel(level: RiskLevel, locale: Locale): string {
   return RISK_LABEL_I18N[locale][level];
-}
-
-export function priorityLabel(priority: string, locale: Locale): string {
-  return PRIORITY_I18N[locale][priority] ?? priority;
 }
 
 export function narrativeLabel(code: string, locale: Locale): string {

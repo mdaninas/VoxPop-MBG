@@ -25,9 +25,7 @@ export type NavKey =
   | "dashboard"
   | "sentiment"
   | "issues"
-  | "risk"
-  | "recommendations"
-  | "about";
+  | "risk";
 
 export interface NavItem {
   key: NavKey;

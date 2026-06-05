@@ -1,12 +1,12 @@
 # VoxPop MBG
 
-VoxPop MBG is a full-stack NLP dashboard that analyzes TikTok comments about Indonesia's Makan Bergizi Gratis (MBG) program. It converts unstructured comments into sentiment insights, public issue categories, risk signals, and stakeholder-facing recommendations.
+VoxPop MBG is a full-stack NLP dashboard that analyzes TikTok comments about Indonesia's Makan Bergizi Gratis (MBG) program. It converts unstructured comments into sentiment insights, public issue categories, risk signals, and an executive summary.
 
 The project pairs a reproducible Python NLP pipeline with a Next.js dashboard. The pipeline exports static JSON, and the web app reads that JSON — no raw data or model server is required at runtime.
 
-> Live demo: _add your deployment URL here._
->
-> Preview: _add a screenshot here (e.g. `docs/preview.png`)._
+![VoxPop MBG dashboard](docs/preview.png)
+
+> Live demo: deploy to Vercel and set `NEXT_PUBLIC_APP_URL` (see [Deployment](#deployment)).
 
 ## Problem
 
@@ -23,13 +23,14 @@ Public conversations about MBG on TikTok are large, informal, and noisy. A senti
 - Sentiment analysis for Indonesian social media comments
 - Issue detection across categories such as food quality, food safety, budget transparency, and distribution fairness
 - Transparent risk-signal scoring for comments that may require manual review
-- Executive summary and recommended actions derived from aggregated metrics
+- Executive summary derived from aggregated metrics
 - Interactive single-comment analyzer that runs entirely in the browser
-- Responsive dashboard with sentiment, issue, and risk explorers
+- Bilingual interface (English / Indonesian) and a responsive layout
 
 ## Tech stack
 
 - Next.js (App Router), TypeScript, Tailwind CSS, Recharts, lucide-react
+- Plus Jakarta Sans + Space Mono via `next/font`; bilingual (EN/ID) UI
 - Python, scikit-learn, NumPy
 - Static JSON as the data contract between pipeline and frontend
 
@@ -62,7 +63,7 @@ pipeline/            Python NLP pipeline
   scripts/           inspect_dataset.py, run_pipeline.py, create_sample_data.py
   tests/             pytest suite
 web/                 Next.js dashboard
-  app/               Pages (home, dashboard, sentiment, issues, risk, recommendations, about)
+  app/               Pages (home, dashboard, sentiment, issues, risk)
   components/        Layout, charts, tables, UI, demo
   lib/               Types, data loaders, formatting, constants
   public/data/       Exported JSON read by the dashboard
@@ -108,6 +109,19 @@ cd web
 npm run build
 ```
 
+## Deployment
+
+The dashboard is a Next.js app in the `web/` subdirectory and deploys to Vercel as a static-JSON site (no backend).
+
+1. Push the repository to GitHub.
+2. Import the project in Vercel and set the **Root Directory** to `web`.
+3. (Optional) Add the environment variables from `web/.env.example`:
+   - `NEXT_PUBLIC_APP_URL` — your production URL, used for page metadata.
+   - `NEXT_PUBLIC_GITHUB_URL` — when set, the home page shows a "View on GitHub" button.
+4. Deploy. Vercel runs `npm run build` automatically.
+
+The sanitized `web/public/data/*.json` files are committed, so the dashboard works without the raw dataset. To refresh them, re-run the pipeline and redeploy.
+
 ## Output examples
 
 `sentiment_summary.json` (excerpt):
@@ -135,7 +149,9 @@ npm run build
   "issue_name": "Food Quality",
   "risk_score": 35,
   "risk_level": "medium",
-  "risk_reasons": ["Contains food safety claim: basi"]
+  "risk_reasons": [
+    { "type": "food_safety", "term": "basi", "en": "Contains food safety claim: basi", "id": "Memuat klaim keamanan pangan: basi" }
+  ]
 }
 ```
 
