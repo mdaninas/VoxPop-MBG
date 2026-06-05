@@ -4,8 +4,6 @@ import {
   SmilePlus,
   Tags,
   ShieldAlert,
-  Lightbulb,
-  Info,
   type LucideIcon,
 } from "lucide-react";
 
@@ -43,8 +41,6 @@ export const NAV_ITEMS: NavItem[] = [
   { key: "sentiment", href: "/sentiment", icon: SmilePlus },
   { key: "issues", href: "/issues", icon: Tags },
   { key: "risk", href: "/risk", icon: ShieldAlert },
-  { key: "recommendations", href: "/recommendations", icon: Lightbulb },
-  { key: "about", href: "/about", icon: Info },
 ];
 
 export const SENTIMENT_META: Record<SentimentLabel, { color: string }> = {
@@ -74,4 +70,12 @@ export const RISK_ORDER: RiskLevel[] = [
   "high",
   "needs_verification",
 ];
+
+// Warm "heat" scale for issue bars/severity, keyed on negative share.
+export function issueBarColor(negativeShare: number): string {
+  if (negativeShare >= 0.4) return "#d9543b";
+  if (negativeShare >= 0.25) return "#e08a4a";
+  if (negativeShare >= 0.12) return "#c9a24a";
+  return "#16304a";
+}
 

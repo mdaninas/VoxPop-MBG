@@ -34,7 +34,7 @@ export function Sidebar({
       )}
     >
       <div className="flex h-16 items-center justify-between border-b border-white/10 px-4">
-        <Brand locale={locale} tone="light" />
+        <Brand tone="light" />
         <LanguageToggle locale={locale} tone="light" />
       </div>
       <nav className="flex-1 space-y-1 overflow-y-auto p-3" aria-label="Primary">

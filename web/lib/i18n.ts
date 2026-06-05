@@ -22,7 +22,6 @@ export function localize(
 }
 
 const en = {
-  brand: { subtitle: "Public opinion intelligence" },
   nav: {
     home: { label: "Home", description: "Project overview" },
     dashboard: { label: "Dashboard", description: "Executive overview" },
@@ -55,7 +54,8 @@ const en = {
   },
   home: {
     badge: "NLP analytics for public opinion",
-    tagline: "Public opinion intelligence from TikTok comments about MBG.",
+    tagline:
+      "Public opinion intelligence from TikTok comments about MBG (Makan Bergizi Gratis).",
     subtitle:
       "A full-stack NLP dashboard that analyzes sentiment, public issues, risk signals, and stakeholder recommendations from social media comments.",
     statComments: "Comments analyzed",
@@ -95,45 +95,6 @@ const en = {
         description:
           "Turns aggregated analysis into concise, stakeholder-facing actions and a watchlist.",
       },
-    ],
-    methodTitle: "Methodology at a glance",
-    methodSubtitle:
-      "A reproducible Python pipeline exports static JSON that this Next.js dashboard reads. No raw data is required at runtime.",
-    methodSteps: [
-      "Ingestion",
-      "Cleaning & normalization",
-      "Sentiment",
-      "Issue detection",
-      "Risk scoring",
-      "Recommendations",
-    ],
-    methodCards: [
-      {
-        title: "Indonesian text handling",
-        description:
-          "Slang normalization, negation handling, and PII masking tuned for informal social media text.",
-      },
-      {
-        title: "Transparent scoring",
-        description:
-          "Risk signals use an auditable 0-100 score built from explicit lexical cues, not a black box.",
-      },
-      {
-        title: "Honest evaluation",
-        description:
-          "Metrics are reported as agreement with weak labels, with clear limitations rather than inflated accuracy.",
-      },
-    ],
-    skillsTitle: "Skills demonstrated",
-    skills: [
-      "Indonesian NLP",
-      "Weak labeling",
-      "TF-IDF + Logistic Regression",
-      "Rule-based taxonomy",
-      "Transparent risk scoring",
-      "Next.js + TypeScript",
-      "Data visualization",
-      "Responsible AI framing",
     ],
     ctaTitle: "See the analysis in action",
     ctaSubtitle: "Explore the executive overview, then dig into sentiment, issues, and risk signals.",
@@ -361,7 +322,6 @@ const en = {
 type Dictionary = typeof en;
 
 const id: Dictionary = {
-  brand: { subtitle: "Intelijen opini publik" },
   nav: {
     home: { label: "Beranda", description: "Ringkasan proyek" },
     dashboard: { label: "Dasbor", description: "Ringkasan eksekutif" },
@@ -397,7 +357,8 @@ const id: Dictionary = {
   },
   home: {
     badge: "Analitik NLP untuk opini publik",
-    tagline: "Intelijen opini publik dari komentar TikTok tentang MBG.",
+    tagline:
+      "Intelijen opini publik dari komentar TikTok tentang MBG (Makan Bergizi Gratis).",
     subtitle:
       "Dasbor NLP full-stack yang menganalisis sentimen, isu publik, sinyal risiko, dan rekomendasi pemangku kepentingan dari komentar media sosial.",
     statComments: "Komentar dianalisis",
@@ -437,45 +398,6 @@ const id: Dictionary = {
         description:
           "Mengubah hasil analisis agregat menjadi tindakan ringkas untuk pemangku kepentingan dan daftar pantau.",
       },
-    ],
-    methodTitle: "Metodologi sekilas",
-    methodSubtitle:
-      "Pipeline Python yang reprodusibel mengekspor JSON statis yang dibaca dasbor Next.js ini. Tidak butuh data mentah saat runtime.",
-    methodSteps: [
-      "Pemuatan data",
-      "Pembersihan & normalisasi",
-      "Sentimen",
-      "Deteksi isu",
-      "Penilaian risiko",
-      "Rekomendasi",
-    ],
-    methodCards: [
-      {
-        title: "Penanganan teks bahasa Indonesia",
-        description:
-          "Normalisasi slang, penanganan negasi, dan penyamaran PII yang disesuaikan untuk teks media sosial informal.",
-      },
-      {
-        title: "Penilaian transparan",
-        description:
-          "Sinyal risiko memakai skor 0-100 yang dapat diaudit dari indikasi leksikal eksplisit, bukan kotak hitam.",
-      },
-      {
-        title: "Evaluasi jujur",
-        description:
-          "Metrik dilaporkan sebagai kesepakatan dengan weak label, dengan batasan yang jelas, bukan akurasi yang dilebih-lebihkan.",
-      },
-    ],
-    skillsTitle: "Keterampilan yang ditunjukkan",
-    skills: [
-      "NLP bahasa Indonesia",
-      "Weak labeling",
-      "TF-IDF + Logistic Regression",
-      "Taksonomi berbasis aturan",
-      "Penilaian risiko transparan",
-      "Next.js + TypeScript",
-      "Visualisasi data",
-      "Framing AI yang bertanggung jawab",
     ],
     ctaTitle: "Lihat analisisnya langsung",
     ctaSubtitle: "Jelajahi ringkasan eksekutif, lalu telusuri sentimen, isu, dan sinyal risiko.",

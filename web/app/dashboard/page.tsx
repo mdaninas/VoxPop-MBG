@@ -32,7 +32,7 @@ import {
 } from "@/lib/data";
 import { getLocale } from "@/lib/locale";
 import { getDictionary, interpolate, issueName, localize } from "@/lib/i18n";
-import { SENTIMENT_META } from "@/lib/constants";
+import { issueBarColor } from "@/lib/constants";
 import { formatDate, formatNumber, formatPercent } from "@/lib/format";
 
 export const metadata: Metadata = { title: "Dashboard" };
@@ -65,7 +65,7 @@ export default async function DashboardPage() {
       issue_name: issueName(issue.issue_id, locale, issue.issue_name),
       count: issue.count,
       share: issue.share,
-      color: SENTIMENT_META[issue.dominant_sentiment].color,
+      color: issueBarColor(issue.negative_share),
     }));
 
   const representative = (comments ?? [])

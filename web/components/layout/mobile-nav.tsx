@@ -48,7 +48,7 @@ export function MobileNav({ locale, open, onClose }: MobileNavProps) {
       />
       <div className="absolute left-0 top-0 flex h-full w-72 max-w-[85%] animate-fade-in flex-col border-r border-border bg-card">
         <div className="flex h-16 items-center justify-between border-b border-border px-4">
-          <Brand locale={locale} />
+          <Brand />
           <button
             type="button"
             onClick={onClose}

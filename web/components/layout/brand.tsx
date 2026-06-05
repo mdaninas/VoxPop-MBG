@@ -1,9 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 
-import { getDictionary } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import type { Locale } from "@/lib/types";
 
 export function BrandMark({ className }: { className?: string }) {
   return (
@@ -45,40 +43,24 @@ export function BrandMark({ className }: { className?: string }) {
 }
 
 export function Brand({
-  locale,
   tone = "dark",
   className,
 }: {
-  locale: Locale;
   tone?: "light" | "dark";
   className?: string;
 }) {
-  const t = getDictionary(locale);
   return (
-    <Link
-      href="/"
-      className={cn("flex items-center gap-2.5 font-semibold", className)}
-    >
+    <Link href="/" className={cn("flex items-center gap-2.5", className)}>
       <span className="flex h-9 w-9 items-center justify-center rounded-[10px] bg-navy ring-1 ring-white/10">
         <BrandMark className="h-6 w-6" />
       </span>
-      <span className="flex flex-col leading-tight">
-        <span
-          className={cn(
-            "text-sm font-bold tracking-tight",
-            tone === "light" ? "text-white" : "text-ink",
-          )}
-        >
-          VoxPop MBG
-        </span>
-        <span
-          className={cn(
-            "font-mono text-[10px] font-bold uppercase tracking-[0.14em]",
-            tone === "light" ? "text-sidebar-muted" : "text-muted-foreground",
-          )}
-        >
-          {t.brand.subtitle}
-        </span>
+      <span
+        className={cn(
+          "text-base font-bold tracking-tight",
+          tone === "light" ? "text-white" : "text-ink",
+        )}
+      >
+        VoxPop MBG
       </span>
     </Link>
   );

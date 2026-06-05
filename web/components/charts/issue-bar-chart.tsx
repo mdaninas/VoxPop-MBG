@@ -67,7 +67,7 @@ export function IssueBarChart({
         />
         <Bar dataKey="count" radius={[0, 4, 4, 0]} maxBarSize={26} name={t.table.comments}>
           {data.map((entry) => (
-            <Cell key={entry.issue_name} fill={entry.color ?? "#38bdf8"} />
+            <Cell key={entry.issue_name} fill={entry.color ?? "#16304a"} />
           ))}
         </Bar>
       </BarChart>

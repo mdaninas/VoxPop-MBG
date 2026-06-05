@@ -16,19 +16,13 @@ import {
 import { getIssueSummary } from "@/lib/data";
 import { getLocale } from "@/lib/locale";
 import { getDictionary, interpolate, issueName } from "@/lib/i18n";
-import { SENTIMENT_META } from "@/lib/constants";
+import { issueBarColor } from "@/lib/constants";
 import { formatNumber, formatPercent } from "@/lib/format";
 import type { Issue, Locale } from "@/lib/types";
 
 export const metadata: Metadata = { title: "Issues" };
 
 const FALLBACK_IDS = new Set(["other", "general_support", "general_rejection"]);
-
-function barColor(negativeShare: number): string {
-  if (negativeShare >= 0.4) return "#fb7185";
-  if (negativeShare >= 0.25) return "#fbbf24";
-  return "#38bdf8";
-}
 
 function IssueCard({ issue, locale }: { issue: Issue; locale: Locale }) {
   const t = getDictionary(locale);
@@ -49,7 +43,7 @@ function IssueCard({ issue, locale }: { issue: Issue; locale: Locale }) {
             className="h-full rounded-full"
             style={{
               width: `${issue.severity_score}%`,
-              backgroundColor: barColor(issue.negative_share),
+              backgroundColor: issueBarColor(issue.negative_share),
             }}
           />
         </div>
@@ -109,7 +103,7 @@ export default async function IssuesPage() {
     issue_name: issueName(issue.issue_id, locale, issue.issue_name),
     count: issue.count,
     share: issue.share,
-    color: SENTIMENT_META[issue.dominant_sentiment].color,
+    color: issueBarColor(issue.negative_share),
   }));
   const byIssue = substantive.slice(0, 8).map((issue) => ({
     ...issue,

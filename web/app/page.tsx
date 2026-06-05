@@ -2,9 +2,6 @@ import Link from "next/link";
 import {
   ArrowRight,
   Github,
-  Gauge,
-  ListChecks,
-  MessageSquareText,
   ShieldAlert,
   SmilePlus,
   Tags,
@@ -22,7 +19,6 @@ import { formatCompact, formatNumber } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
 const FEATURE_ICONS = [SmilePlus, Tags, ShieldAlert, Lightbulb];
-const METHOD_CARD_ICONS = [MessageSquareText, Gauge, ListChecks];
 
 export default async function HomePage() {
   const locale = getLocale();
@@ -149,57 +145,6 @@ export default async function HomePage() {
               </Card>
             );
           })}
-        </div>
-      </section>
-
-      <section className="space-y-6">
-        <div className="max-w-2xl">
-          <h2 className="text-2xl font-extrabold tracking-[-0.02em] text-ink sm:text-[1.7rem]">
-            {t.home.methodTitle}
-          </h2>
-          <p className="mt-2 text-muted-foreground">{t.home.methodSubtitle}</p>
-        </div>
-        <div className="flex flex-wrap items-center gap-2">
-          {t.home.methodSteps.map((step, index) => (
-            <div key={step} className="flex items-center gap-2">
-              <span className="rounded-md border border-border bg-card px-3 py-2 text-sm">
-                {step}
-              </span>
-              {index < t.home.methodSteps.length - 1 ? (
-                <ArrowRight className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
-              ) : null}
-            </div>
-          ))}
-        </div>
-        <div className="grid gap-4 sm:grid-cols-3">
-          {t.home.methodCards.map((card, index) => {
-            const Icon = METHOD_CARD_ICONS[index];
-            return (
-              <Card key={card.title}>
-                <CardContent className="space-y-1 p-5">
-                  <Icon className="h-5 w-5 text-primary" />
-                  <h3 className="mt-2 font-semibold">{card.title}</h3>
-                  <p className="text-sm text-muted-foreground">{card.description}</p>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="space-y-6">
-        <h2 className="text-2xl font-extrabold tracking-[-0.02em] text-ink sm:text-[1.7rem]">
-          {t.home.skillsTitle}
-        </h2>
-        <div className="flex flex-wrap gap-2">
-          {t.home.skills.map((skill) => (
-            <span
-              key={skill}
-              className="rounded-full border border-border bg-card px-3 py-1.5 text-sm text-muted-foreground"
-            >
-              {skill}
-            </span>
-          ))}
         </div>
       </section>
 

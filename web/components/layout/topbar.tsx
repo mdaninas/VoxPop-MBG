@@ -5,15 +5,13 @@ import { Menu } from "lucide-react";
 
 import { Brand } from "./brand";
 import { cn } from "@/lib/utils";
-import type { Locale } from "@/lib/types";
 
 interface TopbarProps {
-  locale: Locale;
   onMenu: () => void;
   className?: string;
 }
 
-export function Topbar({ locale, onMenu, className }: TopbarProps) {
+export function Topbar({ onMenu, className }: TopbarProps) {
   return (
     <header
       className={cn(
@@ -21,7 +19,7 @@ export function Topbar({ locale, onMenu, className }: TopbarProps) {
         className,
       )}
     >
-      <Brand locale={locale} />
+      <Brand />
       <button
         type="button"
         onClick={onMenu}

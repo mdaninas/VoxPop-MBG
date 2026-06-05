@@ -22,7 +22,7 @@ export function AppShell({
     <div className="min-h-screen">
       <Sidebar locale={locale} className="fixed inset-y-0 left-0 z-40 hidden lg:flex" />
       <div className="flex min-h-screen flex-col bg-content lg:pl-64">
-        <Topbar locale={locale} className="lg:hidden" onMenu={() => setOpen(true)} />
+        <Topbar className="lg:hidden" onMenu={() => setOpen(true)} />
         <ContentTopbar locale={locale} className="hidden lg:flex" />
         <main className="flex-1">
           <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-10">
