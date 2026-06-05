@@ -190,7 +190,7 @@ export function CommentTable({
                     <TableCell className="hidden max-w-xs align-top text-xs text-muted-foreground lg:table-cell">
                       {comment.risk_reasons.length > 0
                         ? comment.risk_reasons.map((reason) => reason[locale]).join("; ")
-                        : "—"}
+                        : "-"}
                     </TableCell>
                   ) : null}
                 </TableRow>

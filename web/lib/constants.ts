@@ -12,7 +12,7 @@ import type { RiskLevel, SentimentLabel } from "./types";
 export const SITE = {
   name: "VoxPop MBG",
   subtitle:
-    "A full-stack NLP dashboard that analyzes sentiment, public issues, risk signals, and stakeholder recommendations from social media comments.",
+    "A full-stack NLP dashboard that turns Indonesian TikTok comments into sentiment, public issues, and risk signals.",
   datasetUrl:
     "https://www.kaggle.com/datasets/sinryurifal/dataset-komentar-tiktok-mbg-makan-bergizi-gratis",
   datasetTitle: "Dataset Komentar TikTok MBG (Makan Bergizi Gratis)",

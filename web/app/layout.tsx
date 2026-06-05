@@ -22,8 +22,8 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "VoxPop MBG — Public Opinion Intelligence",
-    template: "%s — VoxPop MBG",
+    default: "VoxPop MBG",
+    template: "%s | VoxPop MBG",
   },
   description: SITE.subtitle,
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),

@@ -56,7 +56,7 @@ export default async function DashboardPage() {
 
   const removed = overview.removed_empty + overview.removed_duplicates;
   const range = overview.date_range
-    ? `, ${formatDate(overview.date_range.start)} – ${formatDate(overview.date_range.end)}`
+    ? `, ${formatDate(overview.date_range.start)} to ${formatDate(overview.date_range.end)}`
     : "";
   const topIssues = issues.issues
     .filter((issue) => issue.issue_id !== "other")

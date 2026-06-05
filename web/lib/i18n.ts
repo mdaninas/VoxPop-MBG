@@ -44,7 +44,7 @@ const en = {
   },
   sidebar: { dataLabel: "Data: TikTok comments on MBG.", kaggleDataset: "Kaggle dataset" },
   footer: {
-    tagline: "VoxPop MBG — public opinion intelligence from TikTok comments about MBG.",
+    tagline: "VoxPop MBG analyzes TikTok comments about the MBG program.",
     dataSource: "Data source:",
     by: "by",
     disclaimer:
@@ -53,9 +53,9 @@ const en = {
   home: {
     badge: "NLP analytics for public opinion",
     tagline:
-      "Public opinion intelligence from TikTok comments about MBG (Makan Bergizi Gratis).",
+      "Public opinion from TikTok comments about MBG (Makan Bergizi Gratis).",
     subtitle:
-      "A full-stack NLP dashboard that analyzes sentiment, public issues, risk signals, and stakeholder recommendations from social media comments.",
+      "A full-stack NLP dashboard that turns Indonesian TikTok comments into sentiment, public issues, and risk signals.",
     statComments: "Comments analyzed",
     statIssues: "Issue categories",
     statFlagged: "Comments flagged for review",
@@ -71,7 +71,7 @@ const en = {
       "What communication actions should stakeholders prioritize?",
     ],
     featuresTitle: "What the dashboard covers",
-    featuresSubtitle: "Four analysis layers, each with its own page and supporting detail.",
+    featuresSubtitle: "The four analysis layers this dashboard is built around.",
     features: [
       {
         title: "Sentiment Analysis",
@@ -91,7 +91,7 @@ const en = {
       {
         title: "Recommendation Summary",
         description:
-          "Distills aggregated analysis into a concise executive summary on the dashboard.",
+          "Turns the aggregated analysis into a short executive summary on the dashboard.",
       },
     ],
     ctaTitle: "See the analysis in action",
@@ -171,9 +171,9 @@ const en = {
     flaggedComments: "Flagged comments",
     flaggedCommentsSub: "Medium risk and above",
     highRisk: "High risk",
-    highRiskSub: "Score 60–79",
+    highRiskSub: "Score 60-79",
     needsVerification: "Needs verification",
-    needsVerificationSub: "Score 80–100",
+    needsVerificationSub: "Score 80-100",
     avgFlagged: "Avg flagged score",
     avgFlaggedSub: "Across flagged comments",
     distribution: "Risk distribution",
@@ -268,7 +268,7 @@ const id: Dictionary = {
     kaggleDataset: "Dataset Kaggle",
   },
   footer: {
-    tagline: "VoxPop MBG — intelijen opini publik dari komentar TikTok tentang MBG.",
+    tagline: "VoxPop MBG menganalisis komentar TikTok tentang program MBG.",
     dataSource: "Sumber data:",
     by: "oleh",
     disclaimer:
@@ -277,9 +277,9 @@ const id: Dictionary = {
   home: {
     badge: "Analitik NLP untuk opini publik",
     tagline:
-      "Intelijen opini publik dari komentar TikTok tentang MBG (Makan Bergizi Gratis).",
+      "Opini publik dari komentar TikTok tentang MBG (Makan Bergizi Gratis).",
     subtitle:
-      "Dasbor NLP full-stack yang menganalisis sentimen, isu publik, sinyal risiko, dan rekomendasi pemangku kepentingan dari komentar media sosial.",
+      "Dasbor NLP full-stack yang mengubah komentar TikTok berbahasa Indonesia menjadi sentimen, isu publik, dan sinyal risiko.",
     statComments: "Komentar dianalisis",
     statIssues: "Kategori isu",
     statFlagged: "Komentar ditandai untuk ditinjau",
@@ -295,7 +295,7 @@ const id: Dictionary = {
       "Tindakan komunikasi apa yang harus diprioritaskan pemangku kepentingan?",
     ],
     featuresTitle: "Yang dicakup dasbor",
-    featuresSubtitle: "Empat lapisan analisis, masing-masing dengan halaman dan detail pendukungnya.",
+    featuresSubtitle: "Empat lapisan analisis yang menjadi dasar dasbor ini.",
     features: [
       {
         title: "Analisis Sentimen",
@@ -315,7 +315,7 @@ const id: Dictionary = {
       {
         title: "Ringkasan Rekomendasi",
         description:
-          "Menyuling hasil analisis agregat menjadi ringkasan eksekutif ringkas di dasbor.",
+          "Mengubah hasil analisis agregat menjadi ringkasan eksekutif singkat di dasbor.",
       },
     ],
     ctaTitle: "Lihat analisisnya langsung",
@@ -395,9 +395,9 @@ const id: Dictionary = {
     flaggedComments: "Komentar ditandai",
     flaggedCommentsSub: "Risiko sedang ke atas",
     highRisk: "Risiko tinggi",
-    highRiskSub: "Skor 60–79",
+    highRiskSub: "Skor 60-79",
     needsVerification: "Perlu verifikasi",
-    needsVerificationSub: "Skor 80–100",
+    needsVerificationSub: "Skor 80-100",
     avgFlagged: "Rata-rata skor ditandai",
     avgFlaggedSub: "Di antara komentar yang ditandai",
     distribution: "Distribusi risiko",
