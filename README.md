@@ -1,79 +1,68 @@
 # VoxPop MBG
 
-VoxPop MBG is a full-stack NLP dashboard that analyzes TikTok comments about Indonesia's Makan Bergizi Gratis (MBG) program. It converts unstructured comments into sentiment insights, public issue categories, risk signals, and an executive summary.
+VoxPop MBG reads TikTok comments about Indonesia's Makan Bergizi Gratis (MBG) program and turns them into a dashboard you can actually use. A plain sentiment percentage tells you very little, so instead of stopping there, the app surfaces what people talk about, which topics attract the most negative reactions, and which comments carry rumor or claim patterns that deserve a manual look.
 
-The project pairs a reproducible Python NLP pipeline with a Next.js dashboard. The pipeline exports static JSON, and the web app reads that JSON — no raw data or model server is required at runtime.
+It is built in two parts. A Python pipeline does the language processing offline and writes plain JSON. A Next.js app reads that JSON and renders the dashboard. There is no database and no always-on backend, so the site loads fast and is cheap to host.
 
-![VoxPop MBG dashboard](docs/preview.png)
-
-> Live demo: deploy to Vercel and set `NEXT_PUBLIC_APP_URL` (see [Deployment](#deployment)).
-
-## Problem
-
-Public conversations about MBG on TikTok are large, informal, and noisy. A sentiment chart alone shows whether comments are positive or negative, but not what people are concerned about, which issues are escalating, or which narratives need verification. VoxPop MBG turns the comments into a dashboard that answers:
+## Questions it answers
 
 1. What is the overall public sentiment toward MBG?
-2. Which issues are people discussing most often?
-3. Which issues are associated with negative sentiment?
-4. Which comments contain rumor or claim patterns to review?
-5. What communication actions should stakeholders prioritize?
+2. Which issues come up most often?
+3. Which issues are tied to negative sentiment?
+4. Which comments look like rumors or unverified claims?
+5. What should communicators address first?
 
-## Features
+## Pages
 
-- Sentiment analysis for Indonesian social media comments
-- Issue detection across categories such as food quality, food safety, budget transparency, and distribution fairness
-- Transparent risk-signal scoring for comments that may require manual review
-- Executive summary derived from aggregated metrics
-- Interactive single-comment analyzer that runs entirely in the browser
-- Bilingual interface (English / Indonesian) and a responsive layout
+- **Home**: a short overview of the project.
+- **Dashboard**: headline counts, the sentiment split, top issues, and a risk summary.
+- **Sentiment**: distribution, average confidence per class, a weekly trend, and a filterable comment table.
+- **Issues**: issues ranked by volume, sentiment per issue, and per-issue detail with keywords and example comments.
+- **Risk Signals**: the risk distribution, the most common narratives, and a table of flagged comments showing the cues behind each flag.
+
+The interface is bilingual (English and Indonesian) and switches with the toggle in the sidebar. There is also a small in-browser tool that scores a single comment as you type.
 
 ## Tech stack
 
-- Next.js (App Router), TypeScript, Tailwind CSS, Recharts, lucide-react
-- Plus Jakarta Sans + Space Mono via `next/font`; bilingual (EN/ID) UI
-- Python, scikit-learn, NumPy
-- Static JSON as the data contract between pipeline and frontend
+Frontend is Next.js (App Router) with TypeScript, Tailwind CSS, and Recharts. The pipeline is Python with scikit-learn and NumPy. The two sides talk through static JSON files, which keeps the contract between them explicit and easy to inspect.
 
 ## Dataset
 
-This project uses the Kaggle dataset "Dataset Komentar TikTok MBG (Makan Bergizi Gratis)" by SinRyuRifal.
+The analysis uses the Kaggle dataset "Dataset Komentar TikTok MBG (Makan Bergizi Gratis)" by SinRyuRifal:
 
-Dataset link: https://www.kaggle.com/datasets/sinryurifal/dataset-komentar-tiktok-mbg-makan-bergizi-gratis
+https://www.kaggle.com/datasets/sinryurifal/dataset-komentar-tiktok-mbg-makan-bergizi-gratis
 
-Raw dataset files are not included in this repository. Place downloaded files in `data/raw/` before running the pipeline.
+The raw data is not committed here. Download it and drop the files into `data/raw/` before running the pipeline.
 
-## Methodology
+## How the pipeline works
 
-The pipeline loads TikTok comment data, detects the schema, cleans and normalizes Indonesian text, applies sentiment classification, maps comments into issue categories, calculates risk signals, and exports frontend-ready JSON files.
+1. Load the raw comments and detect the schema (comment column, timestamp, engagement).
+2. Remove empty and duplicate comments, then mask URLs, mentions, emails, and phone-like numbers.
+3. Clean and normalize the Indonesian text while keeping negation words and common slang.
+4. Label sentiment. Lexicon-based weak labels train a TF-IDF and Logistic Regression model, and the predicted probability is used as a confidence score.
+5. Map each comment to an issue category with a curated keyword taxonomy.
+6. Score risk from 0 to 100 from transparent lexical cues, then bucket into low, medium, high, and needs verification.
+7. Export the aggregated results as JSON for the dashboard.
 
-- **Cleaning**: lowercasing, masking of URLs/mentions/emails/phone-like sequences, repeated-character and punctuation normalization, and a small informal-Indonesian dictionary. Negation words are preserved.
-- **Deduplication**: rows that repeat the same identifier are collapsed, then exact duplicate comments are removed after normalization.
-- **Sentiment**: lexicon-based weak labels train a TF-IDF + Logistic Regression classifier; the predicted probability is used as a confidence score. Reported metrics describe cross-validated agreement with the weak labels.
-- **Issues**: a curated keyword taxonomy maps comments to stakeholder-friendly categories. Embedding-based discovery (BERTopic) is available as an optional extension.
-- **Risk**: a transparent additive 0–100 score built from auditable lexical cues, bucketed into low, medium, high, and needs-verification.
+One point on wording: risk scores flag comments for manual review. They do not decide whether a comment is true or false.
 
-Risk signals are indicators for manual review. They do not determine whether a comment is true or false.
+## Project layout
 
-## Architecture
-
-```text
-data/raw/            Raw dataset (git-ignored)
-pipeline/            Python NLP pipeline
-  src/voxpop_mbg/    Pipeline modules
-  scripts/           inspect_dataset.py, run_pipeline.py, create_sample_data.py
-  tests/             pytest suite
-web/                 Next.js dashboard
-  app/               Pages (home, dashboard, sentiment, issues, risk)
-  components/        Layout, charts, tables, UI, demo
-  lib/               Types, data loaders, formatting, constants
-  public/data/       Exported JSON read by the dashboard
+```
+data/raw/        Raw dataset (ignored by git)
+pipeline/        Python NLP pipeline (modules, scripts, tests)
+web/             Next.js dashboard
+  app/           Pages: home, dashboard, sentiment, issues, risk
+  components/    Layout, charts, tables, UI, demo
+  lib/           Types, data loaders, i18n, formatting
+  public/data/   Exported JSON read at runtime
 ```
 
-The pipeline writes seven JSON files to `web/public/data/`: `overview.json`, `sentiment_summary.json`, `issue_summary.json`, `risk_summary.json`, `comments_sample.json`, `recommendations.json`, and `model_metrics.json`.
+The pipeline writes seven files into `web/public/data/`: `overview`, `sentiment_summary`, `issue_summary`, `risk_summary`, `comments_sample`, `recommendations`, and `model_metrics`.
 
-## Local setup
+## Running it locally
 
-### 1. Run the pipeline
+Pipeline:
 
 ```bash
 cd pipeline
@@ -84,15 +73,9 @@ python scripts/inspect_dataset.py --input ../data/raw
 python scripts/run_pipeline.py --input ../data/raw --output ../web/public/data
 ```
 
-If `data/raw/` contains more than one supported file, pass `--file <name>` to choose one. If the comment column cannot be detected automatically, pass `--comment-column <name>`.
+If `data/raw/` holds more than one supported file, add `--file <name>`. If the comment column is not detected automatically, add `--comment-column <name>`. No dataset yet? Run `python scripts/create_sample_data.py --output ../web/public/data` to write small placeholder JSON so the app still builds.
 
-No dataset yet? Generate placeholder data that matches the schema:
-
-```bash
-python scripts/create_sample_data.py --output ../web/public/data
-```
-
-### 2. Run the web app
+Web app:
 
 ```bash
 cd web
@@ -100,79 +83,37 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000.
+Then open http://localhost:3000.
 
-### Build
+## Deploying
 
-```bash
-cd web
-npm run build
-```
-
-## Deployment
-
-The dashboard is a Next.js app in the `web/` subdirectory and deploys to Vercel as a static-JSON site (no backend).
+The app lives inside the `web/` folder, so it goes to Vercel with one extra setting:
 
 1. Push the repository to GitHub.
-2. Import the project in Vercel and set the **Root Directory** to `web`.
-3. (Optional) Add the environment variables from `web/.env.example`:
-   - `NEXT_PUBLIC_APP_URL` — your production URL, used for page metadata.
-   - `NEXT_PUBLIC_GITHUB_URL` — when set, the home page shows a "View on GitHub" button.
-4. Deploy. Vercel runs `npm run build` automatically.
+2. Import it in Vercel and set **Root Directory** to `web`. Vercel detects Next.js from `web/package.json` on its own.
+3. Optional environment variables (see `web/.env.example`):
+   - `NEXT_PUBLIC_APP_URL`: the production URL, used for page metadata.
+   - `NEXT_PUBLIC_GITHUB_URL`: when set, the home page links to the repo.
+4. Deploy.
 
-The sanitized `web/public/data/*.json` files are committed, so the dashboard works without the raw dataset. To refresh them, re-run the pipeline and redeploy.
+The JSON under `web/public/data/` is committed, so the site works without the raw dataset. To refresh the numbers, re-run the pipeline and push again.
 
-## Output examples
+## Reading the metrics honestly
 
-`sentiment_summary.json` (excerpt):
-
-```json
-{
-  "distribution": [
-    { "label": "positive", "count": 4069, "share": 0.1368 },
-    { "label": "negative", "count": 4374, "share": 0.147 }
-  ],
-  "average_confidence": 0.9,
-  "method": "tfidf_logistic_regression_with_weak_labels"
-}
-```
-
-`comments_sample.json` (excerpt):
-
-```json
-{
-  "id": "c_000001",
-  "text": "Takut makanannya tidak layak untuk anak sekolah.",
-  "sentiment": "negative",
-  "sentiment_confidence": 0.88,
-  "issue_id": "food_quality",
-  "issue_name": "Food Quality",
-  "risk_score": 35,
-  "risk_level": "medium",
-  "risk_reasons": [
-    { "type": "food_safety", "term": "basi", "en": "Contains food safety claim: basi", "id": "Memuat klaim keamanan pangan: basi" }
-  ]
-}
-```
-
-## Evaluation notes
-
-The dataset does not ship with sentiment labels, so the pipeline uses weak labeling. Reported accuracy and macro F1 describe how well the TF-IDF model reproduces the weak labels under cross-validation, not agreement with human-reviewed annotations. Treat the numbers as a measure of internal consistency, not ground-truth accuracy.
+The dataset has no sentiment labels, so the pipeline uses weak labeling. The accuracy and macro F1 it reports measure how closely the TF-IDF model reproduces those weak labels under cross validation, not agreement with human review. Treat them as a consistency check rather than ground truth.
 
 ## Limitations
 
-- The dataset may not represent all TikTok users or the broader public.
-- Sentiment and issue labels depend on weak labeling and a rule-based taxonomy rather than human-reviewed annotations.
-- Risk scoring is a review aid, not a truth judgment.
+- The data is a single snapshot and may not represent every MBG conversation.
+- Sentiment and issue labels come from weak labels and keyword rules, not human annotation.
+- Risk scoring is a review aid, not a verdict.
 
-## Ethical considerations
+## Privacy and ethics
 
-Risk signals in this project are designed for manual review support. They do not determine whether a comment is true or false. The dashboard avoids exposing usernames or personal identifiers and focuses on aggregated public discussion patterns. Comment excerpts are sanitized and truncated before they are exported.
+Usernames, nicknames, and avatars are removed before anything is exported. Comment excerpts are shortened, and URLs, mentions, emails, and phone numbers are masked. The dashboard shows aggregated patterns and never exposes individual identities. The risk wording is deliberately cautious: a flag means the comment is worth checking, not that it is false.
 
-## Future improvements
+## Possible next steps
 
-- Optional FastAPI inference service for the interactive analyzer
-- IndoBERT fine-tuning if reliable labels become available
-- A small human-reviewed validation set for stronger evaluation
-- Embedding-based topic discovery with BERTopic
-- Engagement-weighted sentiment using reply counts
+- A FastAPI service so the in-browser analyzer can call the trained model directly.
+- A small hand-labeled set for a stronger evaluation.
+- Topic discovery with BERTopic to break up the broad "other" bucket.
