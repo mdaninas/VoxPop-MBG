@@ -50,13 +50,13 @@ function IssueCard({ issue, locale }: { issue: Issue; locale: Locale }) {
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
           <span>
             {interpolate(t.issues.commentsWithShare, {
-              count: formatNumber(issue.count),
-              share: formatPercent(issue.share),
+              count: formatNumber(issue.count, locale),
+              share: formatPercent(issue.share, locale),
             })}
           </span>
           <span>
             {interpolate(t.issues.negativeShare, {
-              share: formatPercent(issue.negative_share),
+              share: formatPercent(issue.negative_share, locale),
             })}
           </span>
           <SentimentBadge sentiment={issue.dominant_sentiment} locale={locale} />

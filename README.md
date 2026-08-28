@@ -20,7 +20,7 @@ It is built in two parts. A Python pipeline does the language processing offline
 - **Issues**: issues ranked by volume, sentiment per issue, and per-issue detail with keywords and example comments.
 - **Risk Signals**: the risk distribution, the most common narratives, and a table of flagged comments showing the cues behind each flag.
 
-The interface is bilingual (English and Indonesian) and switches with the toggle in the sidebar. There is also a small in-browser tool that scores a single comment as you type.
+The interface is bilingual (English and Indonesian) and switches with the toggle in the sidebar. There is also a small in-browser tool that scores a single comment when you press Analyze.
 
 ## Tech stack
 
@@ -101,6 +101,10 @@ The JSON under `web/public/data/` is committed, so the site works without the ra
 ## Reading the metrics honestly
 
 The dataset has no sentiment labels, so the pipeline uses weak labeling. The accuracy and macro F1 it reports measure how closely the TF-IDF model reproduces those weak labels under cross validation, not agreement with human review. Treat them as a consistency check rather than ground truth.
+
+Risk levels use additive keyword cues whose scores cluster in steps of five. The thresholds that map those scores to buckets were calibrated against this dataset's distribution, not as universal cutoffs: low ≤ 24, medium 25–39, high 40–59, needs_verification ≥ 60. If the underlying comments change materially, the thresholds should be reviewed again. The committed JSON under `web/public/data/` still reflects the previous pipeline run and bucket definitions until someone re-runs the pipeline on a full dataset and updates those files.
+
+Issue assignment is keyword-based. If any food-safety keyword matches, that category wins even when another issue has more hits—so a comment about poisoning is not drowned out by generic terms like "anak" or "sekolah" in other buckets. The taxonomy also treats `makan` as a food-quality signal, not only `makanan`, so informal phrasing about meals is less likely to fall into the generic fallback buckets.
 
 ## Limitations
 

@@ -57,11 +57,6 @@ def write_json(path: Path, payload: Any) -> None:
         handle.write("\n")
 
 
-def read_json(path: Path) -> Any:
-    with path.open("r", encoding="utf-8") as handle:
-        return json.load(handle)
-
-
 def round_share(numerator: int, denominator: int, digits: int = 4) -> float:
     if denominator <= 0:
         return 0.0

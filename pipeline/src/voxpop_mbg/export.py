@@ -5,7 +5,7 @@ from __future__ import annotations
 import random
 import re
 from collections import Counter, defaultdict
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -17,10 +17,33 @@ from .config import (
     MAX_REPRESENTATIVE_PER_ISSUE,
     MAX_RISK_COMMENTS,
     PROJECT_NAME,
+    RISK_HIGH_MAX,
+    RISK_LOW_MAX,
+    RISK_MEDIUM_MAX,
 )
+from .label import (
+    NEGATION_TERMS,
+    NEGATIVE_TERMS,
+    NEUTRAL_TERMS,
+    POSITIVE_TERMS,
+    SARCASM_TERMS,
+)
+from .normalize import SLANG_DICTIONARY
 from .recommend import generate_recommendations
+from .risk import (
+    ACCUSATION_CUES,
+    FOOD_SAFETY_CLAIMS,
+    NEUTRAL_QUESTIONS,
+    QUESTION_CLAIMS,
+    RUMOR_CUES,
+    SOURCE_TERMS,
+    SUPPORTIVE_TERMS,
+    UNIVERSAL_CLAIMS,
+    URGENCY_CUES,
+    WEIGHTS,
+)
 from .sentiment import SENTIMENT_LABELS
-from .topics import ISSUE_NAMES
+from .topics import ISSUE_NAMES, ISSUE_TAXONOMY
 from .utils import (
     round_share,
     stable_comment_id,
@@ -297,6 +320,45 @@ def build_comments_sample(comments: list[Comment], limit: int, seed: int) -> lis
     return sample
 
 
+def build_analyzer_rules() -> dict[str, Any]:
+    issues = [
+        {
+            "id": issue_id,
+            "name": str(meta["name"]),
+            "keywords": list(meta["keywords"]),  # type: ignore[arg-type]
+        }
+        for issue_id, meta in ISSUE_TAXONOMY.items()
+    ]
+    return {
+        "slang": dict(SLANG_DICTIONARY),
+        "positive_terms": list(POSITIVE_TERMS),
+        "negative_terms": list(NEGATIVE_TERMS),
+        "neutral_terms": list(NEUTRAL_TERMS),
+        "sarcasm_terms": list(SARCASM_TERMS),
+        "negation_terms": sorted(NEGATION_TERMS),
+        "issues": issues,
+        "issue_names": dict(ISSUE_NAMES),
+        "food_safety_override": True,
+        "risk": {
+            "weights": dict(WEIGHTS),
+            "rumor_cues": list(RUMOR_CUES),
+            "universal_claims": list(UNIVERSAL_CLAIMS),
+            "food_safety_claims": list(FOOD_SAFETY_CLAIMS),
+            "accusation_cues": list(ACCUSATION_CUES),
+            "urgency_cues": list(URGENCY_CUES),
+            "question_claims": list(QUESTION_CLAIMS),
+            "source_terms": list(SOURCE_TERMS),
+            "neutral_questions": list(NEUTRAL_QUESTIONS),
+            "supportive_terms": list(SUPPORTIVE_TERMS),
+            "thresholds": {
+                "low_max": RISK_LOW_MAX,
+                "medium_max": RISK_MEDIUM_MAX,
+                "high_max": RISK_HIGH_MAX,
+            },
+        },
+    }
+
+
 def build_model_metrics(sentiment_metrics: dict[str, Any], issue_count: int) -> dict[str, Any]:
     return {
         "sentiment_model": sentiment_metrics,
@@ -330,17 +392,15 @@ def export_all(
     risk_summary = build_risk_summary(comments)
     comments_sample = build_comments_sample(comments, sample_limit, seed)
 
-    sentiment_dist = {
-        item["label"]: item["share"] for item in sentiment_summary["distribution"]
-    }
     recommendations = generate_recommendations(
-        sentiment_dist,
         issue_summary["issues"],
         risk_summary["top_risk_narratives"],
     )
     model_metrics = build_model_metrics(
         sentiment_metrics, len(issue_summary["issues"])
     )
+
+    analyzer_rules = build_analyzer_rules()
 
     files = {
         "overview.json": overview,
@@ -350,6 +410,7 @@ def export_all(
         "comments_sample.json": comments_sample,
         "recommendations.json": recommendations,
         "model_metrics.json": model_metrics,
+        "analyzer_rules.json": analyzer_rules,
     }
     for name, payload in files.items():
         write_json(output_dir / name, payload)

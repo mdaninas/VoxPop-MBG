@@ -134,3 +134,42 @@ export interface ModelMetrics {
   topic_model: Record<string, unknown>;
   risk_model: Record<string, unknown>;
 }
+
+export interface AnalyzerIssueRule {
+  id: string;
+  name: string;
+  keywords: string[];
+}
+
+export interface AnalyzerRiskThresholds {
+  low_max: number;
+  medium_max: number;
+  high_max: number;
+}
+
+export interface AnalyzerRiskRules {
+  weights: Record<string, number>;
+  rumor_cues: string[];
+  universal_claims: string[];
+  food_safety_claims: string[];
+  accusation_cues: string[];
+  urgency_cues: string[];
+  question_claims: string[];
+  source_terms: string[];
+  neutral_questions: string[];
+  supportive_terms: string[];
+  thresholds: AnalyzerRiskThresholds;
+}
+
+export interface AnalyzerRules {
+  slang: Record<string, string>;
+  positive_terms: string[];
+  negative_terms: string[];
+  neutral_terms: string[];
+  sarcasm_terms: string[];
+  negation_terms: string[];
+  issues: AnalyzerIssueRule[];
+  issue_names: Record<string, string>;
+  food_safety_override: boolean;
+  risk: AnalyzerRiskRules;
+}

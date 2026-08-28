@@ -77,6 +77,7 @@ def test_all_files_written(tmp_path):
         "comments_sample.json",
         "recommendations.json",
         "model_metrics.json",
+        "analyzer_rules.json",
     ):
         assert (tmp_path / name).exists()
 

@@ -110,7 +110,6 @@ NEUTRAL_TERMS = [
 ]
 
 SARCASM_TERMS = [
-    "katanya",
     "paling juga",
     "iya paling",
     "mantap sekali sampai",
@@ -174,8 +173,6 @@ def weak_label(clean_text: str) -> tuple[str, dict[str, int]]:
     if sar >= 1 and neg_adj >= 1:
         return "sarcastic_or_ambiguous", counts
     if pos_adj == 0 and neg_adj == 0:
-        if neu >= 1:
-            return "neutral", counts
         return "neutral", counts
     if pos_adj > neg_adj:
         return "positive", counts

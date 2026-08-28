@@ -130,7 +130,7 @@ export function CommentAnalyzer({ locale }: { locale: Locale }) {
                 {issueName(result.issueId, locale)}
               </span>
               <span className="text-xs text-muted-foreground">
-                {t.demo.confidence}: {formatPercent(result.confidence)}
+                {t.demo.confidence}: {formatPercent(result.confidence, locale)}
               </span>
               <div className="ml-auto flex items-center gap-2">
                 <RiskGauge score={result.riskScore} color={RISK_META[result.riskLevel].color} />

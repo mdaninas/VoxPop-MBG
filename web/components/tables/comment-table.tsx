@@ -22,13 +22,27 @@ import {
   riskLabel,
   sentimentLabel,
 } from "@/lib/i18n";
-import { formatPercent } from "@/lib/format";
+import { formatNumber, formatPercent } from "@/lib/format";
 import type { CommentSample, Locale } from "@/lib/types";
 
 const PAGE_SIZE = 12;
 
+export type CommentTableRow = Pick<
+  CommentSample,
+  | "id"
+  | "text"
+  | "sentiment"
+  | "sentiment_confidence"
+  | "issue_id"
+  | "issue_name"
+  | "risk_score"
+  | "risk_level"
+> & {
+  risk_reasons?: CommentSample["risk_reasons"];
+};
+
 interface CommentTableProps {
-  comments: CommentSample[];
+  comments: CommentTableRow[];
   locale: Locale;
   showRiskReasons?: boolean;
 }
@@ -135,7 +149,7 @@ export function CommentTable({
       </div>
 
       <p className="text-sm text-muted-foreground">
-        {filtered.length.toLocaleString()} {t.table.matching}
+        {formatNumber(filtered.length, locale)} {t.table.matching}
       </p>
 
       {rows.length === 0 ? (
@@ -173,7 +187,7 @@ export function CommentTable({
                     <SentimentBadge sentiment={comment.sentiment} locale={locale} />
                   </TableCell>
                   <TableCell className="hidden align-top tabular-nums text-muted-foreground md:table-cell">
-                    {formatPercent(comment.sentiment_confidence)}
+                    {formatPercent(comment.sentiment_confidence, locale)}
                   </TableCell>
                   <TableCell className="hidden align-top text-muted-foreground md:table-cell">
                     {issueName(comment.issue_id, locale, comment.issue_name)}
@@ -188,8 +202,10 @@ export function CommentTable({
                   </TableCell>
                   {showRiskReasons ? (
                     <TableCell className="hidden max-w-xs align-top text-xs text-muted-foreground lg:table-cell">
-                      {comment.risk_reasons.length > 0
-                        ? comment.risk_reasons.map((reason) => reason[locale]).join("; ")
+                      {(comment.risk_reasons?.length ?? 0) > 0
+                        ? (comment.risk_reasons ?? [])
+                            .map((reason) => reason[locale])
+                            .join("; ")
                         : "-"}
                     </TableCell>
                   ) : null}

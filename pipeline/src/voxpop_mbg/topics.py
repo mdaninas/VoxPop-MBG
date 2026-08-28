@@ -33,6 +33,7 @@ ISSUE_TAXONOMY: dict[str, dict[str, object]] = {
     "food_quality": {
         "name": "Food Quality",
         "keywords": [
+            "makan",
             "makanan",
             "menu",
             "menunya",
@@ -59,6 +60,7 @@ ISSUE_TAXONOMY: dict[str, dict[str, object]] = {
             "masak",
             "goreng",
             "bahan",
+            "roti",
         ],
     },
     "budget_transparency": {
@@ -69,10 +71,13 @@ ISSUE_TAXONOMY: dict[str, dict[str, object]] = {
             "uang",
             "pajak",
             "triliun",
+            "triliunan",
             "miliar",
+            "juta",
             "biaya",
             "korupsi",
             "korup",
+            "dikorupsi",
             "transparan",
             "settingan",
             "boros",
@@ -133,6 +138,7 @@ ISSUE_TAXONOMY: dict[str, dict[str, object]] = {
             "berjalan",
             "teknis",
             "tutup",
+            "ditutup",
             "ganti",
         ],
     },
@@ -205,11 +211,15 @@ ISSUE_NAMES_ID: dict[str, str] = {
     "other": "Lainnya",
 }
 
-ISSUE_ORDER = list(ISSUE_TAXONOMY.keys()) + [
-    "general_support",
-    "general_rejection",
-    "other",
-]
+FOOD_SAFETY_CORE_TERMS: tuple[str, ...] = (
+    "keracunan",
+    "racun",
+    "beracun",
+    "muntah",
+    "diare",
+    "kuman",
+    "basi massal",
+)
 
 
 def _match_keywords(text: str, keywords: list[str]) -> list[str]:
@@ -226,8 +236,16 @@ def _match_keywords(text: str, keywords: list[str]) -> list[str]:
 def assign_issue(clean_text: str, sentiment: str) -> tuple[str, str, list[str]]:
     """Assign an issue id, display name, and matched keywords to a comment."""
     text = clean_text or ""
+    food_safety_hits = _match_keywords(
+        text, list(ISSUE_TAXONOMY["food_safety"]["keywords"])
+    )
+    core_hits = _match_keywords(text, list(FOOD_SAFETY_CORE_TERMS))
+    if core_hits:
+        return "food_safety", ISSUE_NAMES["food_safety"], food_safety_hits
+
     best_issue: str | None = None
     best_hits: list[str] = []
+    # Ties keep the first issue in ISSUE_TAXONOMY (e.g. dapur vs desa -> food_safety).
     for issue_id, meta in ISSUE_TAXONOMY.items():
         hits = _match_keywords(text, list(meta["keywords"]))
         if len(hits) > len(best_hits):

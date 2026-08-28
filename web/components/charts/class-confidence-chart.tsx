@@ -13,6 +13,7 @@ import {
 
 import { ChartTooltip, type TooltipItem } from "./chart-tooltip";
 import { EmptyState } from "@/components/ui/empty-state";
+import { formatPercent } from "@/lib/format";
 import { getDictionary } from "@/lib/i18n";
 import type { Locale } from "@/lib/types";
 
@@ -48,7 +49,7 @@ export function ClassConfidenceChart({
           width={140}
           tickLine={false}
           axisLine={false}
-          tick={{ fill: "hsl(215 13% 47%)", fontSize: 12 }}
+          tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
         />
         <Tooltip
           cursor={{ fill: "rgba(47,62,81,0.06)" }}
@@ -57,7 +58,9 @@ export function ClassConfidenceChart({
               active={props.active}
               label={props.label}
               payload={props.payload as unknown as TooltipItem[]}
-              valueFormatter={(value) => `${value}%`}
+              valueFormatter={(value) =>
+                formatPercent(Number(value) / 100, locale)
+              }
             />
           )}
         />

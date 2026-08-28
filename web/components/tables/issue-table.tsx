@@ -45,13 +45,13 @@ export function IssueTable({
                 {issueName(issue.issue_id, locale, issue.issue_name)}
               </TableCell>
               <TableCell className="text-right tabular-nums text-muted-foreground">
-                {formatNumber(issue.count)}
+                {formatNumber(issue.count, locale)}
               </TableCell>
               <TableCell className="hidden text-right tabular-nums text-muted-foreground sm:table-cell">
-                {formatPercent(issue.share)}
+                {formatPercent(issue.share, locale)}
               </TableCell>
               <TableCell className="hidden text-right tabular-nums text-muted-foreground sm:table-cell">
-                {formatPercent(issue.negative_share)}
+                {formatPercent(issue.negative_share, locale)}
               </TableCell>
               <TableCell className="hidden md:table-cell">
                 <SentimentBadge sentiment={issue.dominant_sentiment} locale={locale} />

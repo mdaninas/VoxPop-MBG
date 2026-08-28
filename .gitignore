@@ -25,6 +25,17 @@ pipeline/__pycache__
 web/public/data/*.tmp
 PRD_VoxPop_MBG.md
 docs/PRD_VoxPop_MBG.md
+
+# Workflow agent — lokal, tidak ikut di-commit
+AGENTS.md
+CLAUDE.md
+CURSOR.md
+CURSOR.local.md
+.cursor/
+docs/CONTEXT.md
+docs/WORKFLOW.md
+docs/archive/
+
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 !models/.gitkeep

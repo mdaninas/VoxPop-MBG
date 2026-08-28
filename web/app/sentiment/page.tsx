@@ -9,7 +9,10 @@ import {
   ClassConfidenceChart,
   type ClassConfidenceDatum,
 } from "@/components/charts/class-confidence-chart";
-import { CommentTable } from "@/components/tables/comment-table";
+import {
+  CommentTable,
+  type CommentTableRow,
+} from "@/components/tables/comment-table";
 import {
   Card,
   CardContent,
@@ -18,12 +21,25 @@ import {
 } from "@/components/ui/card";
 import { getComments, getModelMetrics, getSentimentSummary } from "@/lib/data";
 import { getLocale } from "@/lib/locale";
-import { getDictionary, sentimentLabel } from "@/lib/i18n";
+import { getDictionary, interpolate, sentimentLabel } from "@/lib/i18n";
 import { SENTIMENT_META, SENTIMENT_ORDER } from "@/lib/constants";
 import { formatPercent } from "@/lib/format";
 import type { CommentSample, Locale } from "@/lib/types";
 
 export const metadata: Metadata = { title: "Sentiment" };
+
+function toCommentTableRow(comment: CommentSample): CommentTableRow {
+  return {
+    id: comment.id,
+    text: comment.text,
+    sentiment: comment.sentiment,
+    sentiment_confidence: comment.sentiment_confidence,
+    issue_id: comment.issue_id,
+    issue_name: comment.issue_name,
+    risk_score: comment.risk_score,
+    risk_level: comment.risk_level,
+  };
+}
 
 function buildClassConfidence(
   comments: CommentSample[],
@@ -54,10 +70,14 @@ function MetricRow({ label, value }: { label: string; value: string }) {
   );
 }
 
-function formatMetric(value: unknown, notEvaluated: string): string {
+function formatMetric(
+  value: unknown,
+  notEvaluated: string,
+  locale: Locale,
+): string {
   if (value === null || value === undefined) return notEvaluated;
   if (typeof value === "number") {
-    return value <= 1 && value > 0 ? formatPercent(value, 1) : String(value);
+    return value <= 1 && value > 0 ? formatPercent(value, locale, 1) : String(value);
   }
   return String(value);
 }
@@ -78,6 +98,10 @@ export default async function SentimentPage() {
   const model = (metrics?.sentiment_model ?? {}) as Record<string, unknown>;
   const na = t.sentiment.notEvaluated;
   const classConfidence = comments ? buildClassConfidence(comments, locale) : [];
+  const tableRows = comments?.map(toCommentTableRow);
+  const majorityClass = sentiment.distribution.reduce((best, item) =>
+    item.share > best.share ? item : best,
+  );
 
   return (
     <div className="space-y-8">
@@ -124,20 +148,26 @@ export default async function SentimentPage() {
           <CardTitle>{t.sentiment.modelMetrics}</CardTitle>
         </CardHeader>
         <CardContent>
-          <MetricRow label={t.sentiment.metricMethod} value={formatMetric(model.method, na)} />
+          <MetricRow label={t.sentiment.metricMethod} value={formatMetric(model.method, na, locale)} />
           <MetricRow
             label={t.sentiment.metricLabelSource}
-            value={formatMetric(model.label_source, na)}
+            value={formatMetric(model.label_source, na, locale)}
           />
-          <MetricRow label={t.sentiment.metricAccuracy} value={formatMetric(model.accuracy, na)} />
-          <MetricRow label={t.sentiment.metricMacroF1} value={formatMetric(model.macro_f1, na)} />
+          <MetricRow label={t.sentiment.metricAccuracy} value={formatMetric(model.accuracy, na, locale)} />
+          <MetricRow
+            label={interpolate(t.sentiment.metricMajorityBaseline, {
+              label: sentimentLabel(majorityClass.label, locale),
+            })}
+            value={formatPercent(majorityClass.share, locale)}
+          />
+          <MetricRow label={t.sentiment.metricMacroF1} value={formatMetric(model.macro_f1, na, locale)} />
           <MetricRow
             label={t.sentiment.metricPrecision}
-            value={formatMetric(model.precision_macro, na)}
+            value={formatMetric(model.precision_macro, na, locale)}
           />
           <MetricRow
             label={t.sentiment.metricRecall}
-            value={formatMetric(model.recall_macro, na)}
+            value={formatMetric(model.recall_macro, na, locale)}
           />
           <p className="mt-3 text-xs text-muted-foreground">{t.sentiment.metricNote}</p>
         </CardContent>
@@ -145,8 +175,8 @@ export default async function SentimentPage() {
 
       <section>
         <SectionHeader title={t.sentiment.explorer} description={t.sentiment.explorerSub} />
-        {comments && comments.length > 0 ? (
-          <CommentTable comments={comments} locale={locale} />
+        {tableRows && tableRows.length > 0 ? (
+          <CommentTable comments={tableRows} locale={locale} />
         ) : (
           <DataMissing locale={locale} />
         )}

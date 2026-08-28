@@ -2,22 +2,12 @@
 
 Recommendations are produced from aggregated metrics using deterministic
 templates, so the project runs without any paid API. Display text is emitted in
-both English and Indonesian so the dashboard can switch languages. An optional
-LLM summary can be layered on top when credentials are configured, using only
-aggregated inputs.
+both English and Indonesian so the dashboard can switch languages.
 """
 
 from __future__ import annotations
 
 from .topics import ISSUE_NAMES, ISSUE_NAMES_ID
-
-LLM_SYSTEM_INSTRUCTION = (
-    "You are generating a neutral analytics summary from aggregated social "
-    "media analysis. Use only the provided metrics. Do not add external facts. "
-    "Do not claim that any rumor is true or false. Use careful language such as "
-    "'risk signal', 'public concern', and 'requires manual verification'. Keep "
-    "the summary professional and concise."
-)
 
 ACTION_TEMPLATES: dict[str, dict[str, dict[str, str]]] = {
     "food_quality": {
@@ -137,7 +127,6 @@ def _join(names: list[str]) -> str:
 
 
 def generate_recommendations(
-    sentiment_distribution: dict[str, float],
     issues: list[dict[str, object]],
     risk_narratives: list[dict[str, object]],
 ) -> dict[str, object]:
@@ -242,40 +231,4 @@ def generate_recommendations(
         "recommended_actions": actions,
         "watchlist": watchlist,
         "limitations": LIMITATIONS,
-    }
-
-
-def build_llm_payload(
-    total_comments: int,
-    sentiment_distribution: dict[str, float],
-    issues: list[dict[str, object]],
-    risk_narratives: list[dict[str, object]],
-) -> dict[str, object]:
-    """Aggregated, sanitized payload suitable for an optional LLM summary."""
-    negative = sorted(
-        issues, key=lambda i: float(i.get("negative_share", 0.0)), reverse=True
-    )
-    positive = sorted(
-        issues, key=lambda i: float(i.get("positive_share", 0.0)), reverse=True
-    )
-    return {
-        "total_comments": total_comments,
-        "sentiment_distribution": sentiment_distribution,
-        "top_negative_issues": [
-            {
-                "issue": i["issue_name"],
-                "count": i["count"],
-                "negative_share": i.get("negative_share", 0.0),
-            }
-            for i in negative[:3]
-        ],
-        "top_positive_issues": [
-            {
-                "issue": i["issue_name"],
-                "count": i["count"],
-                "positive_share": i.get("positive_share", 0.0),
-            }
-            for i in positive[:2]
-        ],
-        "risk_narratives": risk_narratives[:3],
     }

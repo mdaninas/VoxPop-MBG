@@ -32,15 +32,15 @@ export default async function HomePage() {
   const stats = [
     {
       label: t.home.statComments,
-      value: overview ? formatCompact(overview.usable_comments) : "-",
+      value: overview ? formatCompact(overview.usable_comments, locale) : "-",
     },
     {
       label: t.home.statIssues,
-      value: issues ? formatNumber(issues.issues.length) : "-",
+      value: issues ? formatNumber(issues.issues.length, locale) : "-",
     },
     {
       label: t.home.statFlagged,
-      value: risk ? formatNumber(risk.total_flagged) : "-",
+      value: risk ? formatNumber(risk.total_flagged, locale) : "-",
     },
   ];
 

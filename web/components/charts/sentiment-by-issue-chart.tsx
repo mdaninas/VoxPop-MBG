@@ -13,6 +13,7 @@ import {
 import { ChartTooltip, type TooltipItem } from "./chart-tooltip";
 import { EmptyState } from "@/components/ui/empty-state";
 import { SENTIMENT_META, SENTIMENT_ORDER } from "@/lib/constants";
+import { formatPercent } from "@/lib/format";
 import { getDictionary, sentimentLabel } from "@/lib/i18n";
 import type { Issue, Locale } from "@/lib/types";
 
@@ -58,7 +59,7 @@ export function SentimentByIssueChart({
             width={150}
             tickLine={false}
             axisLine={false}
-            tick={{ fill: "hsl(215 20% 65%)", fontSize: 12 }}
+            tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
           />
           <Tooltip
             cursor={{ fill: "rgba(148,163,184,0.08)" }}
@@ -67,7 +68,9 @@ export function SentimentByIssueChart({
                 active={props.active}
                 label={props.label}
                 payload={props.payload as unknown as TooltipItem[]}
-                valueFormatter={(value) => `${value}%`}
+                valueFormatter={(value) =>
+                  formatPercent(Number(value) / 100, locale)
+                }
               />
             )}
           />

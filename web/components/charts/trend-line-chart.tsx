@@ -55,29 +55,29 @@ export function TrendLineChart({
             </linearGradient>
           ))}
         </defs>
-        <CartesianGrid strokeDasharray="3 3" stroke="hsl(217 30% 18%)" vertical={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />
         <XAxis
           dataKey="date"
-          tickFormatter={(value) => formatDate(value)}
+          tickFormatter={(value) => formatDate(value, locale)}
           tickLine={false}
           axisLine={false}
           minTickGap={28}
-          tick={{ fill: "hsl(215 20% 65%)", fontSize: 11 }}
+          tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 11 }}
         />
         <YAxis
-          tickFormatter={(value) => formatCompact(Number(value))}
+          tickFormatter={(value) => formatCompact(Number(value), locale)}
           tickLine={false}
           axisLine={false}
           width={40}
-          tick={{ fill: "hsl(215 20% 65%)", fontSize: 11 }}
+          tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 11 }}
         />
         <Tooltip
           content={(props) => (
             <ChartTooltip
               active={props.active}
-              label={props.label ? formatDate(String(props.label)) : undefined}
+              label={props.label ? formatDate(String(props.label), locale) : undefined}
               payload={props.payload as unknown as TooltipItem[]}
-              valueFormatter={(value) => formatNumber(Number(value))}
+              valueFormatter={(value) => formatNumber(Number(value), locale)}
             />
           )}
         />

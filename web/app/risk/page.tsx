@@ -17,7 +17,7 @@ import {
 import { EmptyState } from "@/components/ui/empty-state";
 import { getComments, getRiskSummary } from "@/lib/data";
 import { getLocale } from "@/lib/locale";
-import { getDictionary, narrativeLabel } from "@/lib/i18n";
+import { getDictionary, interpolate, narrativeLabel } from "@/lib/i18n";
 import { formatNumber } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
@@ -32,6 +32,16 @@ export default async function RiskPage() {
     return <DataMissing locale={locale} />;
   }
 
+  const sampleFlagged = (comments ?? []).filter(
+    (comment) => comment.risk_level !== "low",
+  ).length;
+  const explorerDescription = comments
+    ? `${t.risk.explorerSub} ${interpolate(t.risk.explorerSample, {
+        shown: formatNumber(sampleFlagged, locale),
+        total: formatNumber(risk.total_flagged, locale),
+      })}`
+    : t.risk.explorerSub;
+
   return (
     <div className="space-y-8">
       <PageHeader
@@ -45,28 +55,28 @@ export default async function RiskPage() {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <MetricCard
           title={t.risk.flaggedComments}
-          value={formatNumber(risk.total_flagged)}
+          value={formatNumber(risk.total_flagged, locale)}
           subtitle={t.risk.flaggedCommentsSub}
           icon={Flag}
           intent="warning"
         />
         <MetricCard
           title={t.risk.highRisk}
-          value={formatNumber(risk.high_risk_count)}
+          value={formatNumber(risk.high_risk_count, locale)}
           subtitle={t.risk.highRiskSub}
           icon={ShieldAlert}
           intent="warning"
         />
         <MetricCard
           title={t.risk.needsVerification}
-          value={formatNumber(risk.needs_verification_count)}
+          value={formatNumber(risk.needs_verification_count, locale)}
           subtitle={t.risk.needsVerificationSub}
           icon={AlertTriangle}
           intent="negative"
         />
         <MetricCard
           title={t.risk.avgFlagged}
-          value={formatNumber(risk.average_flagged_risk_score)}
+          value={formatNumber(risk.average_flagged_risk_score, locale)}
           subtitle={t.risk.avgFlaggedSub}
           icon={Gauge}
         />
@@ -113,7 +123,7 @@ export default async function RiskPage() {
                     </div>
                     <div className="shrink-0 text-right">
                       <p className="text-sm font-semibold tabular-nums">
-                        {formatNumber(narrative.count)}
+                        {formatNumber(narrative.count, locale)}
                       </p>
                       <p className="text-xs text-muted-foreground">
                         {t.risk.avg} {narrative.average_risk_score}
@@ -128,7 +138,7 @@ export default async function RiskPage() {
       </div>
 
       <section>
-        <SectionHeader title={t.risk.explorer} description={t.risk.explorerSub} />
+        <SectionHeader title={t.risk.explorer} description={explorerDescription} />
         {comments && comments.length > 0 ? (
           <RiskCommentTable comments={comments} locale={locale} />
         ) : (

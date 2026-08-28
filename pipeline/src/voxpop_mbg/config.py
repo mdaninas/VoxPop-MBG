@@ -65,9 +65,11 @@ MAX_RISK_COMMENTS = 400
 MAX_COMMENT_EXCERPT = 240
 
 # Risk-level thresholds applied to the 0-100 score.
-RISK_LOW_MAX = 29
-RISK_MEDIUM_MAX = 59
-RISK_HIGH_MAX = 79
+# Calibrated against the current dataset's quantized additive-score distribution;
+# MUST be reviewed if the dataset changes.
+RISK_LOW_MAX = 24
+RISK_MEDIUM_MAX = 39
+RISK_HIGH_MAX = 59
 
 DATASET_SOURCE = (
     "https://www.kaggle.com/datasets/sinryurifal/"

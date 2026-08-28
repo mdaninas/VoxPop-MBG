@@ -54,14 +54,14 @@ export function SentimentDonutChart({
                   active={props.active}
                   payload={props.payload as unknown as TooltipItem[]}
                   hideLabel
-                  valueFormatter={(value) => formatNumber(Number(value))}
+                  valueFormatter={(value) => formatNumber(Number(value), locale)}
                 />
               )}
             />
           </PieChart>
         </ResponsiveContainer>
         <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-2xl font-semibold">{formatNumber(total)}</span>
+          <span className="text-2xl font-semibold">{formatNumber(total, locale)}</span>
           <span className="text-xs text-muted-foreground">{t.charts.commentsUnit}</span>
         </div>
       </div>
@@ -75,7 +75,7 @@ export function SentimentDonutChart({
             />
             <span className="text-foreground">{entry.name}</span>
             <span className="ml-auto tabular-nums text-muted-foreground">
-              {formatNumber(entry.value)} ({formatPercent(entry.share)})
+              {formatNumber(entry.value, locale)} ({formatPercent(entry.share, locale)})
             </span>
           </li>
         ))}

@@ -8,7 +8,7 @@ import {
 
 import { PageHeader } from "@/components/layout/page-header";
 import { MetricCard } from "@/components/dashboard/metric-card";
-import { ExecutiveSummaryCard } from "@/components/dashboard/recommendation-cards";
+import { ExecutiveSummaryCard, LimitationsCard, RecommendedActionsCard } from "@/components/dashboard/recommendation-cards";
 import { ResponsibleNotice } from "@/components/dashboard/responsible-notice";
 import { DataMissing } from "@/components/dashboard/data-missing";
 import { RiskBadge, SentimentBadge } from "@/components/dashboard/status-badges";
@@ -56,7 +56,7 @@ export default async function DashboardPage() {
 
   const removed = overview.removed_empty + overview.removed_duplicates;
   const range = overview.date_range
-    ? `, ${formatDate(overview.date_range.start)} to ${formatDate(overview.date_range.end)}`
+    ? `, ${formatDate(overview.date_range.start, locale)} to ${formatDate(overview.date_range.end, locale)}`
     : "";
   const topIssues = issues.issues
     .filter((issue) => issue.issue_id !== "other")
@@ -79,7 +79,7 @@ export default async function DashboardPage() {
         eyebrow={t.dashboard.eyebrow}
         title={t.dashboard.title}
         description={interpolate(t.dashboard.description, {
-          count: formatNumber(overview.usable_comments),
+          count: formatNumber(overview.usable_comments, locale),
           range,
         })}
       />
@@ -87,37 +87,43 @@ export default async function DashboardPage() {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <MetricCard
           title={t.dashboard.metricTotal}
-          value={formatNumber(overview.raw_rows)}
+          value={formatNumber(overview.raw_rows, locale)}
           subtitle={t.dashboard.metricTotalSub}
           icon={MessagesSquare}
           intent="info"
         />
         <MetricCard
           title={t.dashboard.metricUsable}
-          value={formatNumber(overview.usable_comments)}
+          value={formatNumber(overview.usable_comments, locale)}
           subtitle={t.dashboard.metricUsableSub}
           icon={CheckCircle2}
           intent="positive"
         />
         <MetricCard
           title={t.dashboard.metricRemoved}
-          value={formatNumber(removed)}
+          value={formatNumber(removed, locale)}
           subtitle={interpolate(t.dashboard.metricRemovedSub, {
-            empty: formatNumber(overview.removed_empty),
-            dup: formatNumber(overview.removed_duplicates),
+            empty: formatNumber(overview.removed_empty, locale),
+            dup: formatNumber(overview.removed_duplicates, locale),
           })}
           icon={Layers}
         />
         <MetricCard
           title={t.dashboard.metricFlagged}
-          value={formatNumber(risk.total_flagged)}
+          value={formatNumber(risk.total_flagged, locale)}
           subtitle={interpolate(t.dashboard.metricFlaggedSub, {
-            pct: formatPercent(risk.total_flagged / overview.usable_comments),
+            pct: formatPercent(risk.total_flagged / overview.usable_comments, locale),
           })}
           icon={ShieldAlert}
           intent="warning"
         />
       </div>
+
+      <p className="text-sm text-muted-foreground">
+        {overview.has_engagement
+          ? t.dashboard.engagementPresent
+          : t.dashboard.engagementAbsent}
+      </p>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Card>
@@ -148,19 +154,19 @@ export default async function DashboardPage() {
             <div className="grid grid-cols-3 gap-3 text-center">
               <div className="rounded-md bg-muted/40 p-3">
                 <p className="text-lg font-semibold tabular-nums">
-                  {formatNumber(risk.total_flagged)}
+                  {formatNumber(risk.total_flagged, locale)}
                 </p>
                 <p className="text-xs text-muted-foreground">{t.dashboard.flagged}</p>
               </div>
               <div className="rounded-md bg-muted/40 p-3">
                 <p className="text-lg font-semibold tabular-nums">
-                  {formatNumber(risk.high_risk_count)}
+                  {formatNumber(risk.high_risk_count, locale)}
                 </p>
                 <p className="text-xs text-muted-foreground">{t.dashboard.highRisk}</p>
               </div>
               <div className="rounded-md bg-muted/40 p-3">
                 <p className="text-lg font-semibold tabular-nums">
-                  {formatNumber(risk.average_flagged_risk_score)}
+                  {formatNumber(risk.average_flagged_risk_score, locale)}
                 </p>
                 <p className="text-xs text-muted-foreground">{t.dashboard.avgScore}</p>
               </div>
@@ -171,10 +177,19 @@ export default async function DashboardPage() {
           <ExecutiveSummaryCard
             locale={locale}
             summary={localize(recommendations.executive_summary, locale)}
-            footnote={`${t.dashboard.method}: ${String(sentiment.method)}. ${t.dashboard.avgConfidence} ${formatPercent(sentiment.average_confidence)}.`}
+            footnote={`${t.dashboard.method}: ${String(sentiment.method)}. ${t.dashboard.avgConfidence} ${formatPercent(sentiment.average_confidence, locale)}.`}
           />
         ) : null}
       </div>
+
+      {recommendations &&
+      (recommendations.recommended_actions.length > 0 ||
+        recommendations.limitations.length > 0) ? (
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <RecommendedActionsCard recommendations={recommendations} locale={locale} />
+          <LimitationsCard recommendations={recommendations} locale={locale} />
+        </div>
+      ) : null}
 
       {representative.length > 0 ? (
         <Card>

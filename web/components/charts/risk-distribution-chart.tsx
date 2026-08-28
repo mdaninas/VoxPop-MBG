@@ -51,7 +51,7 @@ export function RiskDistributionChart({
           width={130}
           tickLine={false}
           axisLine={false}
-          tick={{ fill: "hsl(215 20% 65%)", fontSize: 12 }}
+          tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
         />
         <Tooltip
           cursor={{ fill: "rgba(148,163,184,0.08)" }}
@@ -60,7 +60,7 @@ export function RiskDistributionChart({
               active={props.active}
               label={props.label}
               payload={props.payload as unknown as TooltipItem[]}
-              valueFormatter={(value) => formatNumber(Number(value))}
+              valueFormatter={(value) => formatNumber(Number(value), locale)}
             />
           )}
         />
